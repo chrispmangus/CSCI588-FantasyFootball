@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/myTeamName"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <TextView
+        android:id="@+id/title_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:text="@string/header" />
+
+    <ImageView
+        android:id="@+id/banner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/title_header"
+        android:layout_marginTop="7dp"
+        android:src="@drawable/whitebox" />
+
+    <TextView
+        android:id="@+id/leagueName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/banner"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="1dp"
+        android:text="TextView" />
+
+    <ImageView
+        android:id="@+id/myTeamImg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/leagueName"
+        android:layout_toLeftOf="@+id/title_header"
+        android:layout_marginTop="4dp"
+        android:src="@drawable/teambox" />
+
+    <ImageView
+        android:id="@+id/vsTeamImg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/myTeamImg"
+        android:layout_toRightOf="@+id/title_header"
+        android:src="@drawable/teambox" />
+
+    <TextView
+        android:id="@+id/myTeamName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/myTeamImg"
+        android:layout_toRightOf="@+id/leagueName"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/myTeamScore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/myTeamName"
+        android:layout_below="@+id/myTeamName"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/myTeamTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/myTeamImg"
+        android:layout_alignLeft="@+id/myTeamScore"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/vsTeamName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/myTeamScore"
+        android:layout_marginLeft="17dp"
+        android:layout_toRightOf="@+id/myTeamName"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/vsTeamScore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/vsTeamName"
+        android:layout_below="@+id/vsTeamName"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/vsTeamTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/myTeamTime"
+        android:layout_alignBottom="@+id/myTeamTime"
+        android:layout_alignLeft="@+id/vsTeamScore"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/topPerformers"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/myTeamTime"
+        android:layout_centerHorizontal="true"
+        android:text="TextView" />
+
+</RelativeLayout>

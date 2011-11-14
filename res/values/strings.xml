@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="hello">Hello World!</string>
+    <string name="app_name">CSCI588-FantasyFootball</string>
+    <string name="header">WEEK 8 GAMEDAY CENTER</string>
+
+</resources>
