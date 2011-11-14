@@ -4,5 +4,8 @@
     <string name="hello">Hello World!</string>
     <string name="app_name">CSCI588-FantasyFootball</string>
     <string name="header">WEEK 8 GAMEDAY CENTER</string>
-
+    <string name="stringTest">fggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg</string>
+    <string name="myLineup">My Lineup</string>
+    <string name="myMatchup">My Matchup</string>
+    <string name="myLeague">My League</string>
 </resources>
