@@ -3,7 +3,6 @@ package com.csci588.app;
 import android.app.ListActivity;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 
@@ -23,5 +22,4 @@ public class RosterActivity extends ListActivity {
 		lv.setTextFilterEnabled(true);
 	}
 
-	private static final String[] items = new String[]  { "dog", "cat", "monkey?"};
 }
