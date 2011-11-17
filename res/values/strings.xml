@@ -8,4 +8,9 @@
     <string name="myLineup">My Lineup</string>
     <string name="myMatchup">My Matchup</string>
     <string name="myLeague">My League</string>
+    <string name="midweekheader">WEEK 8</string>
+    <string name="winlossrecord"></string>
+    <string name="addPlayersStr"></string>
+    <string name="editLineupStr"></string>
+    <string name="tradeStr"></string>s
 </resources>
