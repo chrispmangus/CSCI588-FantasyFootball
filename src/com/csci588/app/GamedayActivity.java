@@ -4,16 +4,14 @@ import java.io.IOException;
 
 import android.app.Activity;
 import android.content.Context;
-import android.database.Cursor;
+import android.content.Intent;
 import android.database.SQLException;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.text.SpannableString;
 import android.text.style.UnderlineSpan;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
+import android.widget.Button;
 import android.widget.ScrollView;
 import android.widget.TabHost;
 import android.widget.TabHost.TabContentFactory;
@@ -117,6 +115,20 @@ public class GamedayActivity extends Activity {
 		           sv.fullScroll(View.FOCUS_UP);              
 		    }
 		});
+		
+		final Button myLineup = (Button) findViewById(R.id.viewLineup);
+		myLineup.setOnClickListener(new View.OnClickListener() {
+			
+			public void onClick(View v) {
+				
+				Intent myIntent = new Intent(v.getContext(), RosterActivity.class);
+				startActivityForResult(myIntent,0);
+			}
+		});
+	}
+	
+	public static DatabaseHelper getDbHelp(){
+		return dbHelp;
 	}
 	
 	private void setupTab(final View view, final String tag){
@@ -142,6 +154,6 @@ public class GamedayActivity extends Activity {
 		}
 	}
 
-	private DatabaseHelper dbHelp;
+	private static DatabaseHelper dbHelp;
 	private TabHost tabs;
 }
