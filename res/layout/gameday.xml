@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 <ScrollView
+    android:id="@+id/scrollViewGameDay"
     android:layout_height="fill_parent"
     android:layout_width="fill_parent"
     >
@@ -128,7 +129,7 @@
         android:layout_height="wrap_content"
         android:layout_toLeftOf="@+id/topPerformers"
         android:layout_below="@+id/topPerformers"
-        android:layout_marginRight="-30dp"
+        android:layout_marginRight="-40dp"
         android:layout_marginTop="5dp"
         android:src="@drawable/playerbox" />
 
@@ -138,7 +139,7 @@
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/topPerformers"
         android:layout_alignTop="@+id/myTopPerform"
-        android:layout_marginLeft="-30dp"
+        android:layout_marginLeft="-40dp"
         android:src="@drawable/playerbox" />
 
 
@@ -268,6 +269,28 @@
         android:layout_toRightOf="@+id/viewMatchup"
         android:text="@string/myLeague" />
 
+    
+    <TabHost xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/stat_tabhost"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_below="@+id/viewMatchup">
+    <LinearLayout android:orientation="vertical"
+		android:layout_width="fill_parent" android:layout_height="fill_parent">
+        <TabWidget
+            android:id="@android:id/tabs"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" />
+
+        <FrameLayout
+            android:id="@android:id/tabcontent"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@android:id/tabs" >
+            
+        </FrameLayout>
+	</LinearLayout>
+</TabHost>
 </RelativeLayout>
 </ScrollView>
 </RelativeLayout>
