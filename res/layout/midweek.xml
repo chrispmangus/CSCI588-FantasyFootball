@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" >
+<ScrollView
+    android:id="@+id/scrollViewMidweek"
+    android:layout_height="fill_parent"
+    android:layout_width="fill_parent"
+    >
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/MidweekLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" >
+<!--  Midweek information for team -->    
+    <TextView
+        android:id="@+id/title_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:text="@string/midweekheader" />
+
+    <ImageView
+        android:id="@+id/banner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/title_header"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="7dp"
+        android:src="@drawable/whitebox" />
+    
+    <TextView
+        android:id="@+id/leagueName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/banner"
+        android:layout_marginTop="1dp"
+        android:text="TextView" />
+        
+   <ImageView
+        android:id="@+id/myTeamImg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/leagueName"
+        android:layout_toLeftOf="@+id/leagueName"        
+        android:layout_marginTop="4dp"
+        android:src="@drawable/teambox" />
+        
+    <TextView
+        android:id="@+id/vs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/myTeamImg"
+        android:layout_below="@+id/leagueName"
+        android:layout_toRightOf="@+id/leagueName"
+        android:layout_marginLeft="15dp"
+        android:textSize="13sp"
+        android:text="@string/vsstr" />
+    
+    <TextView
+        android:id="@+id/vsTeamName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/vs"
+        android:layout_toRightOf="@+id/leagueName"
+        android:textSize="13sp"
+        android:text="TextView" />
+       
+    <TextView
+        android:id="@+id/myTeamName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/myTeamImg"
+        android:layout_toRightOf="@+id/myTeamImg"
+        android:layout_marginLeft="15dp"
+        android:maxLength="15"
+        android:textSize="10sp"
+        android:text="TextView" />
+
+	<TextView
+        android:id="@+id/winLossRecord"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/myTeamName"
+        android:layout_below="@+id/myTeamName"
+        android:textSize="9sp"
+        android:text="@string/winlossrecord" />
+    	      
+    <TextView
+        android:id="@+id/myTeamRecord"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+       	android:layout_alignBottom="@+id/myTeamName"
+       	android:layout_toRightOf="@+id/winLossRecord"
+       	android:layout_marginLeft="20dp"
+        android:textSize="9sp"
+        android:textStyle="bold"
+        android:text="TextView" />
+    
+    <TextView
+        android:id="@+id/rank"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/winLossRecord"
+        android:layout_alignLeft="@+id/winLossRecord"
+        android:textSize="9sp"
+        android:text="@string/rankstr" />
+    
+    <TextView
+        android:id="@+id/myTeamRank"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+       	android:layout_below="@+id/myTeamRecord"
+       	android:layout_alignRight="@+id/myTeamRecord"
+        android:textSize="9sp"
+        android:textStyle="bold"
+        android:text="TextView" />    
+        
+<!-- Alert -->
+    <TextView
+        android:id="@+id/alert"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rank"
+        android:layout_alignLeft="@+id/rank"
+        android:text="TextView" />    
+
+    <ImageView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/horizontalLine"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/alert"
+        android:paddingBottom="2dp"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:paddingTop="2dp"
+        android:scaleType="fitXY"
+        android:src="@android:drawable/divider_horizontal_dark" />
+        
+<!-- Button Pictures -->
+    <ImageView
+        android:id="@+id/addplayersimg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/horizontalLine"
+        android:layout_alignLeft="@+id/myTeamImg"
+        android:layout_marginTop="4dp"
+        android:src="@drawable/teambox" />
+
+    <ImageView
+        android:id="@+id/editlineupimg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/addplayersimg"
+        android:layout_toRightOf="@+id/addplayersimg"
+        android:layout_marginLeft="10dp"
+        android:src="@drawable/teambox" />
+
+    <ImageView
+        android:id="@+id/leagueimage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/editlineupimg"
+        android:layout_toRightOf="@+id/editlineupimg"
+        android:layout_marginLeft="10dp"
+        android:src="@drawable/teambox" />
+
+   <ImageView
+        android:id="@+id/tradeimg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/leagueimage"
+        android:layout_toRightOf="@+id/leagueimage"
+        android:layout_marginLeft="10dp"
+        android:src="@drawable/teambox" />
+        
+<!-- BUTTONS!!! -->   
+    <Button
+        android:id="@+id/viewAddPlayers"
+        android:layout_width="60dp"
+        android:layout_height="55dp"
+        android:layout_below="@+id/addplayersimg"
+        android:layout_alignLeft="@+id/addplayersimg"
+        android:layout_marginLeft="-3dp"
+        android:text="@string/addPlayersStr" />
+    
+    <Button
+        android:id="@+id/viewEditLineup"
+        android:layout_width="65dp"
+        android:layout_height="55dp"
+        android:layout_below="@+id/editlineupimg"
+        android:layout_alignLeft="@+id/editlineupimg"
+        android:layout_marginLeft="-8dp"
+        android:text="@string/editLineupStr" />
+
+    <Button
+        android:id="@+id/viewLeague"
+        android:layout_width="68dp"
+        android:layout_height="55dp"
+        android:layout_below="@+id/leagueimage"
+        android:layout_alignLeft="@+id/leagueimage"
+        android:layout_marginLeft="-8dp"
+        android:text="@string/myLeague" />    
+    
+    <Button
+        android:id="@+id/viewTrade"
+        android:layout_width="60dp"
+        android:layout_height="55dp"
+        android:layout_below="@+id/tradeimg"
+        android:layout_alignLeft="@+id/tradeimg"
+        android:layout_marginLeft="-3dp"
+        android:text="@string/tradeStr" />
+        
+<!-- TABS -->    
+        <TabHost xmlns:android="http://schemas.android.com/apk/res/android"
+	    android:id="@+id/stat_tabhost"
+	    android:layout_width="fill_parent"
+	    android:layout_height="fill_parent"
+	    android:layout_below="@+id/viewEditLineup">
+	    <LinearLayout android:orientation="vertical"
+			android:layout_width="fill_parent" android:layout_height="fill_parent">
+	        <TabWidget
+	            android:id="@android:id/tabs"
+	            android:layout_width="fill_parent"
+	            android:layout_height="wrap_content" />
+	
+	        <FrameLayout
+	            android:id="@android:id/tabcontent"
+	            android:layout_width="fill_parent"
+	            android:layout_height="wrap_content"
+	            android:layout_below="@android:id/tabs" >
+	            
+	        </FrameLayout>
+		</LinearLayout>
+	</TabHost>                              
+
+</RelativeLayout>    
+</ScrollView>
+</RelativeLayout>
