@@ -52,18 +52,25 @@ public class MidweekActivity extends Activity {
 		DatabaseHelper dbHelp = GamedayActivity.getDbHelp();
 	
 		TopPerformerList tpl = new TopPerformerList(this);
-	 	String query = "SELECT NFL_PLAYERS.fName, NFL_PLAYERS.lName FROM NFL_PLAYERS";
+		String query = "SELECT NFL_PLAYERS.fName, NFL_PLAYERS.lName, NFL_PLAYERS._id FROM NFL_PLAYERS";
 	 	setupTab(tpl.createPerformerList(query, dbHelp), "ALL");
-	 	query = "SELECT NFL_PLAYERS.fName, NFL_PLAYERS.lName FROM NFL_PLAYERS where position_id = 0";
+	 	query = "SELECT NFL_PLAYERS.fName, NFL_PLAYERS.lName, NFL_PLAYERS._id FROM NFL_PLAYERS where position_id = 0";
 		setupTab(tpl.createPerformerList(query, dbHelp), "QB");
-		query = "SELECT NFL_PLAYERS.fName, NFL_PLAYERS.lName FROM NFL_PLAYERS where position_id = 2";
+		query = "SELECT NFL_PLAYERS.fName, NFL_PLAYERS.lName, NFL_PLAYERS._id FROM NFL_PLAYERS where position_id = 2";
 		setupTab(tpl.createPerformerList(query, dbHelp), "RB");
-		query = "SELECT NFL_PLAYERS.fName, NFL_PLAYERS.lName FROM NFL_PLAYERS where position_id = 1";
+		query = "SELECT NFL_PLAYERS.fName, NFL_PLAYERS.lName, NFL_PLAYERS._id FROM NFL_PLAYERS where position_id = 1";
 		setupTab(tpl.createPerformerList(query, dbHelp), "WR");
-		query = "SELECT NFL_PLAYERS.fName, NFL_PLAYERS.lName FROM NFL_PLAYERS where position_id = 3";
+		query = "SELECT NFL_PLAYERS.fName, NFL_PLAYERS.lName, NFL_PLAYERS._id FROM NFL_PLAYERS where position_id = 3";
 		setupTab(tpl.createPerformerList(query, dbHelp), "TE");
-		query = "SELECT NFL_PLAYERS.fName, NFL_PLAYERS.lName FROM NFL_PLAYERS where position_id = 4";
-		setupTab(tpl.createPerformerList(query, dbHelp), "K");	
+		query = "SELECT NFL_PLAYERS.fName, NFL_PLAYERS.lName, NFL_PLAYERS._id FROM NFL_PLAYERS where position_id = 4";
+		setupTab(tpl.createPerformerList(query, dbHelp), "K");
+		
+		final ScrollView sv = (ScrollView) this.findViewById(R.id.scrollViewMidweek);
+		sv.post(new Runnable() {            
+		    public void run() {
+		           sv.fullScroll(View.FOCUS_UP);              
+		    }
+		});
 		
 	}
 	

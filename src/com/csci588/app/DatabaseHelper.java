@@ -40,7 +40,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
      * */
     public void createDataBase() throws IOException{
  
-    	boolean dbExist = checkDataBase();
+    	boolean dbExist =false;// checkDataBase();
  
     	if(dbExist){
     		//do nothing - database already exist
@@ -74,7 +74,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
  
     	try{
     		String myPath = DB_PATH + DB_NAME;
-    		checkDB = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READONLY);
+    		checkDB = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READWRITE);
  
     	}catch(SQLiteException e){
  
@@ -125,7 +125,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
  
     	//Open the database
         String myPath = DB_PATH + DB_NAME;
-    	myDataBase = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READONLY);
+    	myDataBase = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READWRITE);
  
     }
  

@@ -1,6 +1,7 @@
 package com.csci588.app;
 
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -40,7 +41,17 @@ public class TopPerformerList {
 	 	text = (TextView) view.findViewById(R.id.realPoints);
 	 	text.setText("32.2");
 	 	text = (TextView) view.findViewById(R.id.projPoints);
-	 	text.setText("22.1");
+	 	text.setText("22.2");
+	 	final String p_id = cursor.getString(2);
+	 	view.setOnClickListener(new View.OnClickListener() {
+			
+			public void onClick(View v) {
+				
+				Intent myIntent = new Intent(v.getContext(), PlayerActivity.class);
+				myIntent.putExtra("player_id", p_id);
+				v.getContext().startActivity(myIntent);
+			}
+		});
 	 	
 	 	return view;
 	}

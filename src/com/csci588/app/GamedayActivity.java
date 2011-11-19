@@ -72,8 +72,6 @@ public class GamedayActivity extends Activity {
 		tabs = (TabHost)this.findViewById(R.id.stat_tabhost);
 		tabs.setup();
 
-		
-		
 		dbHelp = new DatabaseHelper(this);
 		try {
 			 
@@ -96,17 +94,17 @@ public class GamedayActivity extends Activity {
 	 	}
 
 	 	TopPerformerList tpl = new TopPerformerList(this);
-	 	String query = "SELECT NFL_PLAYERS.fName, NFL_PLAYERS.lName FROM NFL_PLAYERS";
+	 	String query = "SELECT NFL_PLAYERS.fName, NFL_PLAYERS.lName, NFL_PLAYERS._id FROM NFL_PLAYERS";
 	 	setupTab(tpl.createPerformerList(query, dbHelp), "ALL");
-	 	query = "SELECT NFL_PLAYERS.fName, NFL_PLAYERS.lName FROM NFL_PLAYERS where position_id = 0";
+	 	query = "SELECT NFL_PLAYERS.fName, NFL_PLAYERS.lName, NFL_PLAYERS._id FROM NFL_PLAYERS where position_id = 0";
 		setupTab(tpl.createPerformerList(query, dbHelp), "QB");
-		query = "SELECT NFL_PLAYERS.fName, NFL_PLAYERS.lName FROM NFL_PLAYERS where position_id = 2";
+		query = "SELECT NFL_PLAYERS.fName, NFL_PLAYERS.lName, NFL_PLAYERS._id FROM NFL_PLAYERS where position_id = 2";
 		setupTab(tpl.createPerformerList(query, dbHelp), "RB");
-		query = "SELECT NFL_PLAYERS.fName, NFL_PLAYERS.lName FROM NFL_PLAYERS where position_id = 1";
+		query = "SELECT NFL_PLAYERS.fName, NFL_PLAYERS.lName, NFL_PLAYERS._id FROM NFL_PLAYERS where position_id = 1";
 		setupTab(tpl.createPerformerList(query, dbHelp), "WR");
-		query = "SELECT NFL_PLAYERS.fName, NFL_PLAYERS.lName FROM NFL_PLAYERS where position_id = 3";
+		query = "SELECT NFL_PLAYERS.fName, NFL_PLAYERS.lName, NFL_PLAYERS._id FROM NFL_PLAYERS where position_id = 3";
 		setupTab(tpl.createPerformerList(query, dbHelp), "TE");
-		query = "SELECT NFL_PLAYERS.fName, NFL_PLAYERS.lName FROM NFL_PLAYERS where position_id = 4";
+		query = "SELECT NFL_PLAYERS.fName, NFL_PLAYERS.lName, NFL_PLAYERS._id FROM NFL_PLAYERS where position_id = 4";
 		setupTab(tpl.createPerformerList(query, dbHelp), "K");
 		
 		final ScrollView sv = (ScrollView) this.findViewById(R.id.scrollViewGameDay);
@@ -121,7 +119,17 @@ public class GamedayActivity extends Activity {
 			
 			public void onClick(View v) {
 				
-				Intent myIntent = new Intent(v.getContext(), RosterActivity.class);
+				Intent myIntent = new Intent(v.getContext(), LineupActivity.class);
+				startActivityForResult(myIntent,0);
+			}
+		});
+		
+		final Button myMatchup = (Button) findViewById(R.id.viewMatchup);
+		myMatchup.setOnClickListener(new View.OnClickListener() {
+			
+			public void onClick(View v) {
+				
+				Intent myIntent = new Intent(v.getContext(), MidweekActivity.class);
 				startActivityForResult(myIntent,0);
 			}
 		});

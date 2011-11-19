@@ -3,17 +3,27 @@
 
     <string name="hello">Hello World!</string>
     <string name="app_name">CSCI588-FantasyFootball</string>
-    <string name="header">WEEK 8 GAMEDAY CENTER</string>
-    <string name="stringTest">fggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg</string>
+    <string name="header">WEEK 9 GAMEDAY CENTER</string>
     <string name="myLineup">My Lineup</string>
     <string name="myMatchup">My Matchup</string>
     <string name="myLeague">My League</string>
-    <string name="midweekheader">WEEK 8</string>
+    <string name="midweekheader">WEEK 9</string>
     <string name="winlossrecord">Win/Loss Record:</string>
     <string name="rankstr">Rank:</string>
     <string name="addPlayersStr">Add Players</string>
     <string name="editLineupStr">Edit Lineup</string>
     <string name="tradeStr">Trade</string>
     <string name="vsstr">vs</string>
+    <string name="position">Pos.</string>
+    <string name="qb_string">QB</string>
+    <string name="rb1_string">RB1</string>
+    <string name="rb2_string">RB2</string>
+    <string name="wr1_string">WR1</string>
+    <string name="wr2_string">WR2</string>
+    <string name="te_string">TE</string>
+    <string name="k_string">K</string>
+    <string name="starting_lineup">Starting Lineup</string>
+    <string name="bench_players">Bench Players</string>
+    <string name="playerName">Name</string>
 
 </resources>

@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <ImageView
+        android:id="@+id/teamPic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:src="@drawable/teambox" />
+
+    <TextView
+        android:id="@+id/teamName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="18dp"
+        android:layout_toRightOf="@+id/teamPic"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/weekNum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/teamName"
+        android:layout_below="@+id/teamName"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/weekScore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/weekNum"
+        android:layout_marginLeft="26dp"
+        android:layout_toRightOf="@+id/weekNum"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/currentRank"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/weekNum"
+        android:layout_below="@+id/weekNum"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/currentRecord"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/currentRank"
+        android:layout_below="@+id/currentRank"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/startingLineup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/currentRecord"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:text="@string/starting_lineup" />
+
+    <TextView
+        android:id="@+id/position"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/startingLineup"
+        android:text="@string/position" />
+
+    <TextView
+        android:id="@+id/qb_pos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/position"
+        android:text="@string/qb_string" />
+
+    <TextView
+        android:id="@+id/rb1_pos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/qb_pos"
+        android:text="@string/rb1_string" />
+
+    <TextView
+        android:id="@+id/rb2_pos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/rb1_pos"
+        android:text="@string/rb2_string" />
+
+    <TextView
+        android:id="@+id/wr1_pos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/rb2_pos"
+        android:text="@string/wr1_string" />
+
+    <TextView
+        android:id="@+id/wr2_pos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/wr1_pos"
+        android:text="@string/wr2_string" />
+    
+    <TextView
+        android:id="@+id/te_pos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/wr2_pos"
+        android:text="@string/te_string" />
+    
+     <TextView
+        android:id="@+id/k_pos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/te_pos"
+        android:text="@string/k_string" />
+<HorizontalScrollView
+    android:id="@+id/roster_lineup"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_toRightOf="@+id/position"
+        android:layout_below="@+id/startingLineup"
+        android:layout_marginLeft="15dp">
+    </HorizontalScrollView>
+
+<TextView
+    android:id="@+id/bench_players"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignLeft="@+id/startingLineup"
+    android:layout_below="@+id/k_pos"
+    android:text="@string/bench_players" />
+
+<HorizontalScrollView
+    android:id="@+id/bench_lineup"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/bench_players"
+    android:layout_alignParentLeft="true">
+
+    </HorizontalScrollView>
+
+</RelativeLayout>

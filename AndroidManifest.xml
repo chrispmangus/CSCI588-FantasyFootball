@@ -15,7 +15,9 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".RosterActivity"></activity>
+        <activity android:name=".LineupActivity"></activity>
+        <activity android:name=".MidweekActivity"></activity>
+        <activity android:name=".PlayerActivity"></activity>
     </application>
 
 </manifest>
