@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+    
+    <TextView
+        android:id="@+id/title_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:textStyle="bold"
+        android:text="@string/leagueStandingsHeader" />
+        
+    <TextView
+        android:id="@+id/standingsLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/title_header"
+        android:layout_marginRight="4dp"
+        android:text="Standings" />
+    
+	<TextView
+		android:id="@+id/points"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_below="@+id/standingsLabel" 
+		android:layout_alignParentRight="true"
+    	android:layout_marginLeft="50dp"
+   	 	android:layout_marginRight="20dp"
+   	 	android:textSize="12sp"
+    	android:text="Points"/>	
+
+	<TextView
+		android:id="@+id/wlt"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_toLeftOf="@+id/points" 
+		android:layout_below="@+id/standingsLabel" 
+    	android:layout_marginLeft="50dp"
+    	android:layout_marginRight="10dp"
+   	 	android:textSize="12sp"
+    	android:text="W-L-T"/>	
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:id="@+id/buttons"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" 
+   	android:layout_alignParentBottom="true">    
+   	
+   	<ImageView
+       android:id="@+id/lineupimg"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+
+       android:src="@drawable/teambox" />
+       
+    <ImageView
+        android:id="@+id/matchupimage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/lineupimg"
+        android:layout_toRightOf="@+id/lineupimg"
+       	android:layout_marginLeft="10dp"
+        android:src="@drawable/teambox" />
+        
+    <ImageView
+        android:id="@+id/othermatchupimage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/lineupimg"
+        android:layout_toRightOf="@+id/matchupimage"
+       	android:layout_marginLeft="10dp"        
+        android:src="@drawable/teambox" />
+        
+    <Button
+        android:id="@+id/viewLineup"
+        android:layout_width="60dp"
+        android:layout_height="45dp"
+        android:layout_below="@+id/lineupimg"
+        android:textSize="10sp"
+        android:layout_marginLeft="-5dp"
+        android:text="@string/myLineup" />
+    
+    <Button
+        android:id="@+id/viewMatchup"
+        android:layout_width="65dp"
+        android:layout_height="45dp"
+        android:layout_below="@+id/matchupimage"
+        android:layout_toRightOf="@+id/viewLineup"
+        android:textSize="10sp"
+        android:text="@string/myMatchup" />
+    
+    <Button
+        android:id="@+id/otherMachups"
+        android:layout_width="70dp"
+        android:layout_height="45dp"
+        android:layout_below="@+id/othermatchupimage"
+        android:layout_toRightOf="@+id/viewMatchup"
+        android:textSize="10sp"
+        android:text="@string/otherMatchups" />           
+        
+ </RelativeLayout>              
+       
+ 	<ScrollView 
+		android:id="@+id/standingsScroll"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_below="@+id/points"
+		android:layout_above="@+id/buttons"
+		android:layout_centerHorizontal="true">
+		  <LinearLayout
+		  	android:id="@+id/standings"
+		    android:orientation="vertical"
+		    android:layout_width="fill_parent"
+		    android:layout_height="fill_parent"
+		    android:layout_weight="1">
+		    </LinearLayout>
+	</ScrollView> 
+	
+</RelativeLayout>
