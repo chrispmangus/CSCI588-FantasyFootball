@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/top_bg_selector"
     android:clickable="true" >
+
     
     <TextView
     android:id="@+id/teamRank"
@@ -12,21 +13,41 @@
     android:layout_alignParentLeft="true"
     android:layout_alignParentTop="true"
     android:layout_marginLeft="15dp"
+    android:layout_marginRight="15dp"
     android:layout_marginTop="10dp"
     android:layout_marginBottom="10dp"
     android:text="TextView" />
-         
+
+        <View 
+        android:id="@+id/View00" 
+        android:layout_width="1dp"     
+        android:layout_height="40dp"
+        android:layout_alignTop="@+id/teamRank"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="-10dp"
+        android:background="#FFFFFF"></View>
+    
+    <View 
+        android:id="@+id/View01" 
+        android:layout_width="1dp"     
+        android:layout_height="40dp"
+        android:layout_alignTop="@+id/teamRank"
+        android:layout_marginTop="-10dp"
+        android:layout_toRightOf="@+id/teamRank" 
+        android:background="#FFFFFF"></View>
+    
     <TextView
     android:id="@+id/leagueTeamName"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_alignParentTop="true"
     android:layout_toRightOf="@+id/teamRank"
-    android:layout_marginLeft="50dp"
+    android:layout_marginLeft="35dp"
     android:layout_marginTop="10dp"
     android:layout_marginBottom="10dp"
     android:text="TextView" />    
     
+
     
 	<TextView
     android:id="@+id/teamPoints"
@@ -39,18 +60,47 @@
     android:layout_marginBottom="10dp"
     android:text="TextView" />
  		
+	
     <TextView
     android:id="@+id/teamRecord"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_alignParentTop="true"
     android:layout_toLeftOf="@+id/teamPoints"
-    android:layout_marginLeft="50dp"
+    android:layout_marginLeft="25dp"
    	android:layout_marginRight="60dp"
     android:layout_marginTop="10dp"
     android:layout_marginBottom="10dp"
     android:text="TextView" />  	
 	
+   <View 
+	   android:id="@+id/View02" 
+	   android:layout_width="1dp"     
+	   android:layout_height="40dp"
+	   android:layout_alignTop="@+id/teamRecord"
+	   android:layout_marginTop="-10dp"
+	   android:layout_toLeftOf="@+id/teamRecord" 
+	   android:background="#FFFFFF"></View>
+   
+     <View 
+	   android:id="@+id/View03" 
+	   android:layout_width="1dp"     
+	   android:layout_height="40dp"
+	   android:layout_alignTop="@+id/teamPoints"
+	   android:layout_marginTop="-10dp"
+	   android:layout_toRightOf="@+id/teamRecord"
+	   android:layout_marginLeft="-15dp" 
+	   android:background="#FFFFFF"></View>
+     
+     <View 
+        android:id="@+id/View04" 
+        android:layout_width="1dp"     
+        android:layout_height="40dp"
+        android:layout_alignTop="@+id/teamPoints"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="-10dp"
+        android:background="#EEEEEE"></View>
+    
     <ImageView
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/horizontalLine"

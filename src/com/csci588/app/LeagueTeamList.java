@@ -19,7 +19,8 @@ public class LeagueTeamList {
 		this.context = context;
 		this.db = db;
 	}
-	 	
+	
+	
 	// Fill list of teams
 	public ViewGroup createTeamList(ViewGroup ll, String query){
 		Cursor dataCursor = db.getQuery(query);
@@ -46,7 +47,6 @@ public class LeagueTeamList {
 	 	text = (TextView) view.findViewById(R.id.teamRecord);
 	 	text.setText(cursor.getString(1) + "-" + cursor.getString(2) + "-" + cursor.getString(3));
 	 	final String p_id = cursor.getString(4);
-	 	// TODO: calculate team points
 	 	text = (TextView) view.findViewById(R.id.teamPoints);
 	 	String totalPoints =  "select sum(real_stats) from nfl_fantasy_stats, rosters " +
 				"where manager_id = "+ cursor.getString(4) + " and rosters.week = 9 and " +
@@ -55,9 +55,7 @@ public class LeagueTeamList {
 	 	Cursor ptCursor = db.getQuery(totalPoints);
 	 	ptCursor.moveToFirst();
 	 	text.setText(Float.toString(ptCursor.getFloat(0)));
-	 	
-	 	// TODO: Get teamId from table using getString(0)
-	 	
+	 		 	
 	 	view.setOnClickListener(new View.OnClickListener() {
 			
 			public void onClick(View v) {
@@ -70,5 +68,6 @@ public class LeagueTeamList {
 	 	
 	 	return view;
 	}
+
 	
 }
