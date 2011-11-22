@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+    
+    <View
+        android:layout_width="2dp"
+        android:layout_height="fill_parent"
+        android:background="@color/clicky"
+        android:layout_centerHorizontal="true"
+        />
+
+    <ImageView
+        android:id="@+id/onePlayerPic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true" />
+
+    <ImageView
+        android:id="@+id/twoPlayerPic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true" />
+
+    <TextView
+        android:id="@+id/onePlayerName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/onePlayerPic"
+        android:layout_toRightOf="@+id/onePlayerPic"
+        android:maxLength="15"
+        android:layout_marginLeft="5dp"
+        android:text="TextView" />
+    
+    <TextView
+        android:id="@+id/onePlayerPosition"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/onePlayerName"
+        android:layout_below="@+id/onePlayerName"
+        android:text="TextView" />
+    
+    <TextView
+        android:id="@+id/onePlayerTeam"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/onePlayerPosition"
+        android:text="TextView" />
+    
+    <TextView
+        android:id="@+id/onePlayerBye"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/onePlayerTeam"
+        android:text="TextView" />
+    
+    <TextView
+        android:id="@+id/onePlayerNext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/onePlayerBye"
+        android:text="TextView" />
+    
+    <TextView
+        android:id="@+id/twoPlayerName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/twoPlayerPic"
+        android:layout_toLeftOf="@+id/twoPlayerPic"
+        android:maxLength="15"
+        android:layout_marginRight="5dp"
+        android:text="TextView" />
+    
+    <TextView
+        android:id="@+id/twoPlayerPosition"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/twoPlayerName"
+        android:layout_below="@+id/twoPlayerName"
+        android:text="TextView" />
+    
+    <TextView
+        android:id="@+id/twoPlayerTeam"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/twoPlayerPosition"
+        android:text="TextView" />
+    
+    <TextView
+        android:id="@+id/twoPlayerBye"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/twoPlayerTeam"
+        android:text="TextView" />
+    
+    <TextView
+        android:id="@+id/twoPlayerNext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/twoPlayerBye"
+        android:text="TextView" />
+    
+    <RatingBar
+        android:id="@+id/onePlayerRating"
+        android:layout_below="@+id/onePlayerNext"
+        android:isIndicator="true"
+        android:stepSize="1.0"
+        style="@style/ratingBar"
+        android:layout_alignLeft="@+id/onePlayerName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+    <RatingBar
+        android:id="@+id/twoPlayerRating"
+        android:layout_below="@+id/twoPlayerNext"
+        android:isIndicator="true"
+        android:stepSize="1.0"
+        style="@style/ratingBar"
+        android:layout_alignRight="@+id/twoPlayerName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+    
+    <LinearLayout
+        android:id="@+id/onePlayerStats"
+        android:layout_below="@+id/onePlayerRating"
+        android:layout_alignParentLeft="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    
+    <LinearLayout
+        android:id="@+id/twoPlayerStats"
+        android:layout_below="@+id/twoPlayerRating"
+        android:layout_alignParentRight="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    
+    
+</RelativeLayout>

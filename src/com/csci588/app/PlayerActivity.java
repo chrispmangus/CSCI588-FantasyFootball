@@ -1,7 +1,9 @@
 package com.csci588.app;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -14,7 +16,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 public class PlayerActivity extends Activity{
@@ -56,6 +57,11 @@ public class PlayerActivity extends Activity{
 		playerInfo.moveToFirst();
 		final int pos_id = playerInfo.getInt(4);
 		
+		String dialogQuery = "select nfl_players._id,fName,lName, real_stats from nfl_players,nfl_fantasy_stats " +
+				"where nfl_players.position_id = " + pos_id +
+				" and nfl_players._id = nfl_fantasy_stats._id";
+		final Cursor dialogInfo = GamedayActivity.getDbHelp().getQuery(dialogQuery);
+		final CompareCursorAdapter s = new CompareCursorAdapter(this, dialogInfo);
 		
 		/*determines the buttons for the player, based on thier team status
 		 * the 4 states are:
@@ -79,6 +85,27 @@ public class PlayerActivity extends Activity{
 				cmp.setText("Compare");
 				cmp.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT,
 						LayoutParams.WRAP_CONTENT));
+				cmp.setOnClickListener(new View.OnClickListener() {
+					
+					public void onClick(final View v) {
+						//Intent myIntent = new Intent(v.getContext(), CompareActivity.class);
+						//startActivityForResult(myIntent,0);
+						AlertDialog dialog = new AlertDialog.Builder(v.getContext()).setIcon(R.drawable.icon)
+								.setTitle("Pick a player")
+								.setSingleChoiceItems(s,0,new DialogInterface.OnClickListener() {
+									
+									public void onClick(DialogInterface dialog, int which) {
+										Intent myIntent = new Intent(v.getContext(), CompareActivity.class);
+										myIntent.putExtra("one_id", p_id);
+										myIntent.putExtra("two_id", playerIdFromDialog(dialogInfo,which));
+										startActivityForResult(myIntent,0);
+									}
+								})
+								.create();
+						dialog.show();
+						
+					}
+				});
 				ll.addView(cmp);
 
 				Button trd = new Button(this);
@@ -109,6 +136,27 @@ public class PlayerActivity extends Activity{
 						cmp.setLayoutParams(new LayoutParams(
 								LayoutParams.MATCH_PARENT,
 								LayoutParams.WRAP_CONTENT));
+						cmp.setOnClickListener(new View.OnClickListener() {
+							
+							public void onClick(final View v) {
+								//Intent myIntent = new Intent(v.getContext(), CompareActivity.class);
+								//startActivityForResult(myIntent,0);
+								AlertDialog dialog = new AlertDialog.Builder(v.getContext()).setIcon(R.drawable.icon)
+										.setTitle("Pick a player")
+										.setSingleChoiceItems(s,0,new DialogInterface.OnClickListener() {
+											
+											public void onClick(DialogInterface dialog, int which) {
+												Intent myIntent = new Intent(v.getContext(), CompareActivity.class);
+												myIntent.putExtra("one_id", p_id);
+												myIntent.putExtra("two_id", playerIdFromDialog(dialogInfo,which));
+												startActivityForResult(myIntent,0);
+											}
+										})
+										.create();
+								dialog.show();
+								
+							}
+						});
 						ll.addView(cmp);
 
 						Button add = new Button(this);
@@ -151,6 +199,27 @@ public class PlayerActivity extends Activity{
 						cmp.setLayoutParams(new LayoutParams(
 								LayoutParams.MATCH_PARENT,
 								LayoutParams.WRAP_CONTENT));
+						cmp.setOnClickListener(new View.OnClickListener() {
+							
+							public void onClick(final View v) {
+								//Intent myIntent = new Intent(v.getContext(), CompareActivity.class);
+								//startActivityForResult(myIntent,0);
+								AlertDialog dialog = new AlertDialog.Builder(v.getContext()).setIcon(R.drawable.icon)
+										.setTitle("Pick a player")
+										.setSingleChoiceItems(s,0,new DialogInterface.OnClickListener() {
+											
+											public void onClick(DialogInterface dialog, int which) {
+												Intent myIntent = new Intent(v.getContext(), CompareActivity.class);
+												myIntent.putExtra("one_id", p_id);
+												myIntent.putExtra("two_id", playerIdFromDialog(dialogInfo,which));
+												startActivityForResult(myIntent,0);
+											}
+										})
+										.create();
+								dialog.show();
+								
+							}
+						});
 						ll.addView(cmp);
 
 						Button strt = new Button(this);
@@ -196,6 +265,27 @@ public class PlayerActivity extends Activity{
 			Button cmp = new Button(this);
 			cmp.setText("Compare");
 			cmp.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+			cmp.setOnClickListener(new View.OnClickListener() {
+				
+				public void onClick(final View v) {
+					//Intent myIntent = new Intent(v.getContext(), CompareActivity.class);
+					//startActivityForResult(myIntent,0);
+					AlertDialog dialog = new AlertDialog.Builder(v.getContext()).setIcon(R.drawable.icon)
+							.setTitle("Pick a player")
+							.setSingleChoiceItems(s,0,new DialogInterface.OnClickListener() {
+								
+								public void onClick(DialogInterface dialog, int which) {
+									Intent myIntent = new Intent(v.getContext(), CompareActivity.class);
+									myIntent.putExtra("one_id", p_id);
+									myIntent.putExtra("two_id", playerIdFromDialog(dialogInfo,which));
+									startActivityForResult(myIntent,0);
+								}
+							})
+							.create();
+					dialog.show();
+					
+				}
+			});
 			ll.addView(cmp);
 			
 			Button add = new Button(this);
@@ -454,6 +544,19 @@ public class PlayerActivity extends Activity{
 			ll.addView(v);
 			statsInfo.close();
 		}
+	}
+	
+	private String playerIdFromDialog(Cursor cursor, int num){
+		int count = 0;
+		if(cursor.moveToFirst()){
+			do{
+				if(count == num){
+					return cursor.getString(0);
+				}
+				count++;
+			}while(cursor.moveToNext());
+		}
+		return "-1";
 	}
 	
 	private String[] positions;

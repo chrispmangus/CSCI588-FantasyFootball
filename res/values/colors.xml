@@ -5,5 +5,6 @@
     <color name="basicText">#C2C2C2</color>
     <color name="rosterTextBg">#474747</color>
 	<color name="rosterBg">#0F0F0F</color>
+	<color name="compareText">#000000</color>
     
 </resources>

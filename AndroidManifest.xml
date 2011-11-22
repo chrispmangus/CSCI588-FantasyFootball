@@ -30,6 +30,7 @@
         <meta-data android:name="android.app.default_searchable"
                    android:value=".SearchActivity" />
         <activity android:name=".LeagueActivity"></activity>
+        <activity android:name=".CompareActivity"></activity>
     </application>
 
 </manifest>
