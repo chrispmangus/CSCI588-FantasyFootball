@@ -28,4 +28,6 @@
 	<string name="bench">BN</string>
 	<string name="search_label">Search</string>
 	<string name="search_hint">Type in First/Last Name of player</string>
+	<string name="leagueStandingsHeader">League Standings</string>
+	<string name="otherMatchups">Other Matchups</string>
 </resources>

@@ -27,8 +27,7 @@ public class LeagueActivity extends Activity {
 		setContentView(R.layout.league_standings);
 		
 		// Populate league standings
-		DatabaseHelper dbHelp = GamedayActivity.getDbHelp();
-		LeagueTeamList ltl = new LeagueTeamList(this, dbHelp);
+		LeagueTeamList ltl = new LeagueTeamList(this);
 		// get user name, wins, losses, ties
 		String query = "select username, wins, losses, ties, managers._id from managers,records where managers._id = records._id order by wins DESC";
 		ViewGroup parent = (ViewGroup) findViewById(R.id.standings);

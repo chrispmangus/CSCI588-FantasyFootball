@@ -13,17 +13,15 @@ import android.widget.TextView;
 public class LeagueTeamList {
 	
 	private Context context;
-	private DatabaseHelper db;
 	
-	LeagueTeamList(Context context, DatabaseHelper db){
+	LeagueTeamList(Context context){
 		this.context = context;
-		this.db = db;
 	}
 	
 	
 	// Fill list of teams
 	public ViewGroup createTeamList(ViewGroup ll, String query){
-		Cursor dataCursor = db.getQuery(query);
+		Cursor dataCursor = GamedayActivity.getDbHelp().getQuery(query);
 		if(dataCursor.moveToFirst()){
 			int i = 1;
 			do {
@@ -52,10 +50,10 @@ public class LeagueTeamList {
 				"where manager_id = "+ cursor.getString(4) + " and rosters.week = 9 and " +
 				"( rosters.qb= _id or rosters.rb1 = _id or rosters.rb2 = _id " +
 				"or rosters.wr1 = _id or rosters.wr2 = _id or rosters.te = _id or rosters.k = _id)";
-	 	Cursor ptCursor = db.getQuery(totalPoints);
+	 	Cursor ptCursor = GamedayActivity.getDbHelp().getQuery(totalPoints);
 	 	ptCursor.moveToFirst();
 	 	text.setText(Float.toString(ptCursor.getFloat(0)));
-	 		 	
+	 	ptCursor.close();
 	 	view.setOnClickListener(new View.OnClickListener() {
 			
 			public void onClick(View v) {

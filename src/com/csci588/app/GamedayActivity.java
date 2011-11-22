@@ -61,7 +61,7 @@ public class GamedayActivity extends Activity {
 		setupView(our_manager_id,week,tV, true);
 		
 		
-		/* TODO LEAGUE IMAGE CLICK
+		/*0-- TODO LEAGUE IMAGE CLICK
 		iV = (ImageView) this.findViewById(R.id.myTeamImg);
 		iV.setOnClickListener(new View.OnClickListener() {
 			
@@ -91,6 +91,16 @@ public class GamedayActivity extends Activity {
 			public void onClick(View v) {
 				
 				Intent myIntent = new Intent(v.getContext(), MidweekActivity.class);
+				startActivityForResult(myIntent,0);
+			}
+		});
+		
+		final Button otherMatchup = (Button) findViewById(R.id.viewLeague);
+		otherMatchup.setOnClickListener(new View.OnClickListener() {
+			
+			public void onClick(View v) {
+				
+				Intent myIntent = new Intent(v.getContext(), LeagueActivity.class);
 				startActivityForResult(myIntent,0);
 			}
 		});
