@@ -31,6 +31,7 @@
                    android:value=".SearchActivity" />
         <activity android:name=".LeagueActivity"></activity>
         <activity android:name=".CompareActivity"></activity>
+        <activity android:name=".MatchupActivity"></activity>
     </application>
 
 </manifest>

@@ -22,16 +22,6 @@
         android:text="TextView" />
 
     <TextView
-        android:id="@+id/teamName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/playerName"
-        android:layout_below="@+id/playerName"
-        android:textColor="@color/compareText"
-        android:textSize="12sp"
-        android:text="TextView" />
-
-    <TextView
         android:id="@+id/realPoints"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

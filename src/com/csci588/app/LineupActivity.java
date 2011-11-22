@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.HorizontalScrollView;
@@ -71,24 +72,36 @@ public class LineupActivity extends Activity{
 		
 		LinearLayout llR = new LinearLayout(this);
 		llR.setOrientation(LinearLayout.HORIZONTAL);
-		llR.setBackgroundResource(R.color.rosterBg);
 		
 		LinearLayout llB = new LinearLayout(this);
 		llB.setOrientation(LinearLayout.HORIZONTAL);
 				
 		Cursor cursor = gatherRoster(team_id,9);
 		Cursor c = gatherBench(team_id, 9);
+		
+		String rosterStatsQuery = "select real_stats, proj_stats, avgpts from nfl_fantasy_stats, nfl_player_stats " +
+				"where nfl_fantasy_stats._id = nfl_player_stats._id and nfl_player_stats._id IN"
+				+"("+ rosters+")";
+		String benchesStatsQuery = "select real_stats, proj_stats, avgpts from nfl_fantasy_stats, nfl_player_stats " +
+				"where nfl_fantasy_stats._id = nfl_player_stats._id and nfl_player_stats._id IN"
+				+"("+ benches+")";
+		Cursor rosterStatsInfo = GamedayActivity.getDbHelp().getQuery(rosterStatsQuery);
+		Cursor benchStatsInfo = GamedayActivity.getDbHelp().getQuery(benchesStatsQuery);
 		fillRosterNames(llR,cursor);
 		llR.addView(getDivider(this),getDividerParams());
 		fillBenchPos(llB);
 		fillBenchNames(llB, c);
-		fillLastWeek(llR,cursor);
+		fillRealStats(llR,rosterStatsInfo);
 		llR.addView(getDivider(this),getDividerParams());
-		fillProjected(llR,cursor);
+		fillProjected(llR,rosterStatsInfo);
 		llR.addView(getDivider(this),getDividerParams());
-		fillProjected(llR,cursor);
-		llR.addView(getDivider(this),getDividerParams());
-		fillProjected(llR,cursor);
+		fillAverage(llR,rosterStatsInfo);
+		
+		fillBRealStats(llB,benchStatsInfo);
+		llB.addView(getDivider(this),getDividerParams());
+		fillBProjected(llB,benchStatsInfo);
+		llB.addView(getDivider(this),getDividerParams());
+		fillBAverage(llB,benchStatsInfo);
 		HorizontalScrollView hsvR = (HorizontalScrollView) this.findViewById(R.id.roster_lineup);
 		hsvR.addView(llR);
 		
@@ -98,6 +111,8 @@ public class LineupActivity extends Activity{
 		
 		teamNameInfo.close();
 		teamScoreInfo.close();
+		rosterStatsInfo.close();
+		benchStatsInfo.close();
 		recordInfo.close();
 		cursor.close();
 		if(c != null)
@@ -107,12 +122,14 @@ public class LineupActivity extends Activity{
 		
 	private void fillRosterNames(LinearLayout mainLL, Cursor cursor){
 		LinearLayout ll = new LinearLayout(this);
-
+		ll.setBackgroundResource(R.drawable.tab_unselected);
 		
 		ll.setOrientation(LinearLayout.VERTICAL);
 		TextView tv;
 		tv = new TextView(this);
 		tv.setText("Name");
+		tv.setTextSize(16);
+		tv.setTextColor(Color.parseColor("#E8E8E8"));
 		ll.addView(tv);
 		if(cursor.moveToFirst()){
 		
@@ -121,10 +138,12 @@ public class LineupActivity extends Activity{
 				
 				tv = new TextView(this);
 				if(rosterBlanks[i] == true){
-					tv.setText("EMPTY");
+					tv.setText("");
+					tv.setTextSize(16);
 				}
 				else{
 					tv.setText(cursor.getString(0) + " " + cursor.getString(1));
+					tv.setTextSize(16);
 					final String p_id = cursor.getString(2);
 					tv.setBackgroundResource(R.color.rosterTextBg);
 					tv.setTextColor(getResources().getColor(R.color.mainScreenText));
@@ -151,10 +170,13 @@ public class LineupActivity extends Activity{
 	
 	private void fillBenchNames(LinearLayout mainLL, Cursor cursor){
 		LinearLayout ll = new LinearLayout(this);
+		ll.setBackgroundResource(R.drawable.tab_unselected);
 		ll.setOrientation(LinearLayout.VERTICAL);
 		TextView tv;
 		tv = new TextView(this);
 		tv.setText("Name");
+		tv.setTextSize(16);
+		tv.setTextColor(Color.parseColor("#E8E8E8"));
 		ll.addView(tv);
 		if(cursor != null){
 		
@@ -162,10 +184,12 @@ public class LineupActivity extends Activity{
 			for(int i = 0; i < benchBlanks.length; i++){
 				tv = new TextView(this);
 				if(benchBlanks[i] == true){
-					tv.setText("EMPTY");
+					tv.setText("");
+					tv.setTextSize(16);
 				}
 				else{
 					tv.setText(cursor.getString(0) + " " + cursor.getString(1));
+					tv.setTextSize(16);
 					final String p_id = cursor.getString(2);
 					tv.setBackgroundResource(R.color.rosterTextBg);
 					tv.setTextColor(getResources().getColor(R.color.mainScreenText));
@@ -185,7 +209,8 @@ public class LineupActivity extends Activity{
 		}else{
 			for(int i = 0; i < benchBlanks.length; i++){
 				tv = new TextView(this);
-				tv.setText("EMPTY");
+				tv.setText("");
+				tv.setTextSize(16);
 				tv.setBackgroundResource(R.color.rosterTextBg);
 				tv.setTextColor(getResources().getColor(R.color.mainScreenText));
 				ll.addView(tv);
@@ -193,52 +218,247 @@ public class LineupActivity extends Activity{
 		}
 		LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
 			     LinearLayout.LayoutParams.FILL_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-		layoutParams.setMargins(25, 0, 20, 0);
+		layoutParams.setMargins(15, 0, 20, 0);
 		
 		mainLL.addView(ll,layoutParams);
 	}
 	
 	
 	
-	private void fillLastWeek(LinearLayout mainLL, Cursor cursor){
+	private void fillRealStats(LinearLayout mainLL, Cursor cursor){
 		LinearLayout ll = new LinearLayout(this);
+		ll.setBackgroundResource(R.drawable.tab_unselected);
+		
 		ll.setOrientation(LinearLayout.VERTICAL);
 		TextView tv;
 		tv = new TextView(this);
-		tv.setText("Last Week");
+		tv.setText("Real Stats");
+		tv.setTextSize(16);
+		tv.setTextColor(Color.parseColor("#E8E8E8"));
 		ll.addView(tv);
-		for(int i = 0; i < 7; i++){
-			tv = new TextView(this);
-			tv.setText("22.2");
-			ll.addView(tv);
+		if(cursor.moveToFirst()){
+		
+			
+			for(int i = 0; i < rosterBlanks.length; i++){
+				
+				tv = new TextView(this);
+				if(rosterBlanks[i] == true){
+					tv.setText("");
+					tv.setTextSize(16);
+				}
+				else{
+					tv.setText(cursor.getString(0));
+					tv.setTextSize(16);
+					tv.setBackgroundResource(R.color.rosterTextBg);
+					tv.setTextColor(getResources().getColor(R.color.mainScreenText));
+					
+					cursor.moveToNext();
+				}
+				ll.addView(tv);
+			}
 		}
 		LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
 			     LinearLayout.LayoutParams.FILL_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-
-		layoutParams.setMargins(20, 0, 20, 0);
+		layoutParams.setMargins(10, 0, 10, 0);
+		
 		mainLL.addView(ll,layoutParams);
 	}
 	
 	private void fillProjected(LinearLayout mainLL, Cursor cursor){
 		LinearLayout ll = new LinearLayout(this);
+		ll.setBackgroundResource(R.drawable.tab_unselected);
+		
 		ll.setOrientation(LinearLayout.VERTICAL);
 		TextView tv;
 		tv = new TextView(this);
-		tv.setText("Proj.");
+		tv.setText("Proj. Stats");
+		tv.setTextSize(16);
+		tv.setTextColor(Color.parseColor("#E8E8E8"));
 		ll.addView(tv);
-		for(int i = 0; i < 7; i++){
-			tv = new TextView(this);
-			tv.setText("25.2");
-			ll.addView(tv);
+		if(cursor.moveToFirst()){
+		
+			
+			for(int i = 0; i < rosterBlanks.length; i++){
+				
+				tv = new TextView(this);
+				if(rosterBlanks[i] == true){
+					tv.setText("");
+					tv.setTextSize(16);
+				}
+				else{
+					tv.setText(cursor.getString(1));
+					tv.setTextSize(16);
+					tv.setBackgroundResource(R.color.rosterTextBg);
+					tv.setTextColor(getResources().getColor(R.color.mainScreenText));
+					
+					cursor.moveToNext();
+				}
+				ll.addView(tv);
+			}
 		}
 		LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
 			     LinearLayout.LayoutParams.FILL_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-
-		layoutParams.setMargins(20, 0, 20, 0);
+		layoutParams.setMargins(10, 0, 10, 0);
+		
 		mainLL.addView(ll,layoutParams);
 	}
 	
+	private void fillAverage(LinearLayout mainLL, Cursor cursor){
+		LinearLayout ll = new LinearLayout(this);
+		ll.setBackgroundResource(R.drawable.tab_unselected);
+		
+		ll.setOrientation(LinearLayout.VERTICAL);
+		TextView tv;
+		tv = new TextView(this);
+		tv.setText("Avg. Stats");
+		tv.setTextSize(16);
+		tv.setTextColor(Color.parseColor("#E8E8E8"));
+		ll.addView(tv);
+		if(cursor.moveToFirst()){
+		
+			
+			for(int i = 0; i < rosterBlanks.length; i++){
+				
+				tv = new TextView(this);
+				if(rosterBlanks[i] == true){
+					tv.setText("");
+					tv.setTextSize(16);
+				}
+				else{
+					tv.setText(cursor.getString(2));
+					tv.setTextSize(16);
+					tv.setBackgroundResource(R.color.rosterTextBg);
+					tv.setTextColor(getResources().getColor(R.color.mainScreenText));
+					
+					cursor.moveToNext();
+				}
+				ll.addView(tv);
+			}
+		}
+		LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
+			     LinearLayout.LayoutParams.FILL_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+		layoutParams.setMargins(10, 0, 10, 0);
+		
+		mainLL.addView(ll,layoutParams);
+	}
 
+	private void fillBRealStats(LinearLayout mainLL, Cursor cursor){
+		LinearLayout ll = new LinearLayout(this);
+		ll.setBackgroundResource(R.drawable.tab_unselected);
+		
+		ll.setOrientation(LinearLayout.VERTICAL);
+		TextView tv;
+		tv = new TextView(this);
+		tv.setText("Real Stats");
+		tv.setTextSize(16);
+		tv.setTextColor(Color.parseColor("#E8E8E8"));
+		ll.addView(tv);
+		if(cursor.moveToFirst()){
+		
+			
+			for(int i = 0; i < benchBlanks.length; i++){
+				
+				tv = new TextView(this);
+				if(benchBlanks[i] == true){
+					tv.setText("");
+					tv.setTextSize(16);
+				}
+				else{
+					tv.setText(cursor.getString(0));
+					tv.setTextSize(16);
+					tv.setBackgroundResource(R.color.rosterTextBg);
+					tv.setTextColor(getResources().getColor(R.color.mainScreenText));
+					
+					cursor.moveToNext();
+				}
+				ll.addView(tv);
+			}
+		}
+		LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
+			     LinearLayout.LayoutParams.FILL_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+		layoutParams.setMargins(10, 0, 10, 0);
+		
+		mainLL.addView(ll,layoutParams);
+	}
+	
+	private void fillBProjected(LinearLayout mainLL, Cursor cursor){
+		LinearLayout ll = new LinearLayout(this);
+		ll.setBackgroundResource(R.drawable.tab_unselected);
+		
+		ll.setOrientation(LinearLayout.VERTICAL);
+		TextView tv;
+		tv = new TextView(this);
+		tv.setText("Proj. Stats");
+		tv.setTextSize(16);
+		tv.setTextColor(Color.parseColor("#E8E8E8"));
+		ll.addView(tv);
+		if(cursor.moveToFirst()){
+		
+			
+			for(int i = 0; i < benchBlanks.length; i++){
+				
+				tv = new TextView(this);
+				if(benchBlanks[i] == true){
+					tv.setText("");
+					tv.setTextSize(16);
+				}
+				else{
+					tv.setText(cursor.getString(1));
+					tv.setTextSize(16);
+					tv.setBackgroundResource(R.color.rosterTextBg);
+					tv.setTextColor(getResources().getColor(R.color.mainScreenText));
+					
+					cursor.moveToNext();
+				}
+				ll.addView(tv);
+			}
+		}
+		LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
+			     LinearLayout.LayoutParams.FILL_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+		layoutParams.setMargins(10, 0, 10, 0);
+		
+		mainLL.addView(ll,layoutParams);
+	}
+	
+	private void fillBAverage(LinearLayout mainLL, Cursor cursor){
+		LinearLayout ll = new LinearLayout(this);
+		ll.setBackgroundResource(R.drawable.tab_unselected);
+		
+		ll.setOrientation(LinearLayout.VERTICAL);
+		TextView tv;
+		tv = new TextView(this);
+		tv.setText("Avg. Stats");
+		tv.setTextSize(16);
+		tv.setTextColor(Color.parseColor("#E8E8E8"));
+		ll.addView(tv);
+		if(cursor.moveToFirst()){
+		
+			
+			for(int i = 0; i < benchBlanks.length; i++){
+				
+				tv = new TextView(this);
+				if(benchBlanks[i] == true){
+					tv.setText("");
+					tv.setTextSize(16);
+				}
+				else{
+					tv.setText(cursor.getString(2));
+					tv.setTextSize(16);
+					tv.setBackgroundResource(R.color.rosterTextBg);
+					tv.setTextColor(getResources().getColor(R.color.mainScreenText));
+					
+					cursor.moveToNext();
+				}
+				ll.addView(tv);
+			}
+		}
+		LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
+			     LinearLayout.LayoutParams.FILL_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+		layoutParams.setMargins(10, 0, 10, 0);
+		
+		mainLL.addView(ll,layoutParams);
+	}
+	
 	
 	private Cursor gatherRoster(int teamID, int weekID){
 		Cursor tempCursor = gatherRosterList(teamID, weekID);
@@ -249,10 +469,14 @@ public class LineupActivity extends Activity{
 				if(rosterBlanks[i]){
 					continue;
 				}else{
-					if(i < 6 && !allBlanksAhead(rosterBlanks,i))
+					if(i < 6 && !allBlanksAhead(rosterBlanks,i)){
 						q1 += tempCursor.getString(i) + ",";
-					else
+						rosters += tempCursor.getString(i) + ",";
+					}
+					else{
 						q1 += tempCursor.getString(i);
+						rosters += tempCursor.getString(i);
+					}
 				}
 					
 			}
@@ -275,10 +499,14 @@ public class LineupActivity extends Activity{
 				if(benchBlanks[i]){
 					continue;
 				}else{
-					if(i < 6 && !allBlanksAhead(benchBlanks,i))
+					if(i < 6 && !allBlanksAhead(benchBlanks,i)){
 						q1 += tempCursor.getString(i) + ",";
-					else
+						benches += tempCursor.getString(i) + ",";
+					}
+					else{
 						q1 += tempCursor.getString(i);
+						benches += tempCursor.getString(i);
+					}
 				}
 			}
 			q1+=")";
@@ -299,10 +527,15 @@ public class LineupActivity extends Activity{
 	
 		tv = new TextView(this);
 		tv.setText("Pos.");
+		tv.setTextSize(16);
+		tv.setBackgroundResource(R.color.pos_col);
+		tv.setTextColor(Color.parseColor("#E8E8E8"));
 		ll.addView(tv);
 		for(int i = 0; i < 5; i++){
 			tv = new TextView(this);
-			tv.setText("BN" + i  + ":");
+			tv.setText("BN" + (i+1));
+			tv.setTextSize(16);
+			tv.setBackgroundResource(R.color.type_bg_col);
 			ll.addView(tv);
 		}
 		
@@ -372,6 +605,8 @@ public class LineupActivity extends Activity{
 		return vParams;
 	}
 	
+	private String rosters = "";
+	private String benches = "";
 	
 
 	private String[] positions;

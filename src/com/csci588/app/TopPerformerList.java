@@ -18,13 +18,15 @@ public class TopPerformerList {
 		this.context = context;
 	}
 	
-	public LinearLayout createPerformerList(String query, DatabaseHelper db){
+	public LinearLayout createPerformerList(String query, DatabaseHelper db, boolean filter){
 		LinearLayout ll = new LinearLayout(context);
 		ll.setOrientation(LinearLayout.VERTICAL);
 		Cursor dataCursor = db.getQuery(query);
 		if(dataCursor.moveToFirst()){
 			do{
-				ll.addView(itemCreator(dataCursor));
+				View v = itemCreator(dataCursor,filter);
+				if(v != null)
+					ll.addView(v);
 			}
 			while(dataCursor.moveToNext());
 		}
@@ -33,12 +35,12 @@ public class TopPerformerList {
 	}
 	
 	
-	private View itemCreator(Cursor cursor){
+	private View itemCreator(Cursor cursor, boolean filter){
 		final String p_id = cursor.getString(2);
 		LayoutInflater lf = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		View view = lf.inflate(R.layout.top_performer, null);
 		
-		ImageView iv = (ImageView)view.findViewById(R.id.playerPic);
+		ImageView iv = (ImageView)view.findViewById(R.id.player__Pic);
 		iv.setBackgroundResource(PictureActions.pickPicture(Integer.parseInt(p_id)));
 		
 		String teamQuery = "select rosters.manager_id from rosters where (qb = "+p_id + 
@@ -58,6 +60,10 @@ public class TopPerformerList {
 		String ownerQuery = "select managers._id from managers where managers._id = (" + teamQuery + ")";
 		Cursor managerInfo = GamedayActivity.getDbHelp().getQuery(ownerQuery);
 		if(managerInfo.moveToFirst()){
+			if(filter){
+				managerInfo.close();
+				return null;
+			}	
 			String statsQuery = "select real_stats, proj_stats, username from nfl_fantasy_stats,managers where managers._id = " +
 					managerInfo.getString(0)  + " and nfl_fantasy_stats._id = " +p_id;
 			Cursor statsInfo = GamedayActivity.getDbHelp().getQuery(statsQuery);
@@ -71,9 +77,20 @@ public class TopPerformerList {
 		 	text = (TextView) view.findViewById(R.id.projPoints);
 		 	text.setText("Proj Points: " + statsInfo.getString(1));
 		 	statsInfo.close();
-		}else{
-			String statsQuery = "select real_stats, proj_stats from nfl_fantasy_stats where nfl_fantasy_stats._id = 1";
-
+		}
+		if(!managerInfo.moveToFirst()){
+			String statsQuery = "select real_stats, proj_stats from nfl_fantasy_stats where nfl_fantasy_stats._id = "+p_id;
+			Cursor statsInfo = GamedayActivity.getDbHelp().getQuery(statsQuery);
+			statsInfo.moveToFirst();
+			TextView text = (TextView) view.findViewById(R.id.playerName);
+			text.setText(cursor.getString(0) + " " + cursor.getString(1));
+		 	text = (TextView) view.findViewById(R.id.teamName);
+		 	text.setText("Free Agent");
+		 	text = (TextView) view.findViewById(R.id.realPoints);
+		 	text.setText("Real Points: " + statsInfo.getString(0));
+		 	text = (TextView) view.findViewById(R.id.projPoints);
+		 	text.setText("Proj Points: " + statsInfo.getString(1));
+		 	statsInfo.close();
 		}
 	 	
 	 	view.setOnClickListener(new View.OnClickListener() {

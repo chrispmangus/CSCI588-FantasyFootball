@@ -2,6 +2,7 @@ package com.csci588.app;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.text.SpannableString;
@@ -21,10 +22,8 @@ public class CompareActivity extends Activity{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.compare_page);
 		
-		final String one_id = getIntent().getStringExtra("one_id");
-		final String two_id = getIntent().getStringExtra("two_id");
-		Log.i("one",one_id);
-		Log.i("two",two_id);
+		one_id = getIntent().getStringExtra("one_id");
+		two_id = getIntent().getStringExtra("two_id");
 		
 		positions = new String[5];
 		positions[0] = "QB";
@@ -33,7 +32,17 @@ public class CompareActivity extends Activity{
 		positions[3] = "TE";
 		positions[4] = "K";
 		
+		setup(one_id,two_id, false);
 		
+	}
+	
+	@Override
+	protected void onRestart(){
+		super.onRestart();
+		setup(one_id,two_id, true);
+	}
+	
+	private void setup(final String one_id,final String two_id, boolean restart){
 		String oneTeamQuery = "select rosters.manager_id from rosters where (qb = "+one_id + 
 				" or rb1 = " + one_id +
 				" or rb2 = " + one_id +
@@ -48,7 +57,7 @@ public class CompareActivity extends Activity{
 				" or bn4 = " +   one_id +
 				" or bn5 = " +   one_id +
 				") AND week = 9";
-		String oneOwnerQuery = "select managers.username from managers where managers._id = (" + oneTeamQuery + ")";
+		String oneOwnerQuery = "select managers.username,_id from managers where managers._id = (" + oneTeamQuery + ")";
 		Cursor oneManagerInfo = GamedayActivity.getDbHelp().getQuery(oneTeamQuery);
 		final Cursor onePlayerInfo = GamedayActivity.getDbHelp().getQuery("SELECT * from nfl_players where _id = " + one_id);
 		Cursor oneTeamInfo = GamedayActivity.getDbHelp().getQuery(oneOwnerQuery);
@@ -68,7 +77,7 @@ public class CompareActivity extends Activity{
 				" or bn4 = " +   two_id +
 				" or bn5 = " +   two_id +
 				") AND week = 9";
-		String twoOwnerQuery = "select managers.username from managers where managers._id = (" + twoTeamQuery + ")";
+		String twoOwnerQuery = "select managers.username,_id from managers where managers._id = (" + twoTeamQuery + ")";
 		Cursor twoManagerInfo = GamedayActivity.getDbHelp().getQuery(twoTeamQuery);
 		final Cursor twoPlayerInfo = GamedayActivity.getDbHelp().getQuery("SELECT * from nfl_players where _id = " + two_id);
 		Cursor twoTeamInfo = GamedayActivity.getDbHelp().getQuery(twoOwnerQuery);
@@ -77,13 +86,15 @@ public class CompareActivity extends Activity{
 		setPositionTeam(onePlayerInfo, true);
 		setPlayerName(onePlayerInfo, true);
 		setNextGame(onePlayerInfo, setByeWeek(onePlayerInfo, true), true);
-		setStats(onePlayerInfo,one_id, true);
+		if(!restart)
+			setStats(onePlayerInfo,one_id, true);
 		
 		setFantasyTeamName(twoTeamInfo, false);
 		setPositionTeam(twoPlayerInfo, false);
 		setPlayerName(twoPlayerInfo, false);
 		setNextGame(twoPlayerInfo, setByeWeek(twoPlayerInfo, false), false);
-		setStats(twoPlayerInfo,two_id, false);
+		if(!restart)
+			setStats(twoPlayerInfo,two_id, false);
 		
 		ImageView iV = (ImageView) this.findViewById(R.id.onePlayerPic);
 		iV.setBackgroundResource(PictureActions.pickPicture(Integer.parseInt(one_id)));
@@ -108,7 +119,17 @@ public class CompareActivity extends Activity{
 		else
 			tv = (TextView) this.findViewById(R.id.twoPlayerName);
 		if(cursor.moveToFirst()){
+			final String p_id = cursor.getString(0);
 			tv.setText(cursor.getString(1) + " " + cursor.getString(2));
+			tv.setOnClickListener(new View.OnClickListener() {
+				
+				public void onClick(View v) {
+					
+					Intent myIntent = new Intent(v.getContext(), PlayerActivity.class);
+					myIntent.putExtra("player_id", p_id);
+					v.getContext().startActivity(myIntent);
+				}
+			});
 		}
 	}
 		
@@ -119,7 +140,17 @@ public class CompareActivity extends Activity{
 		else
 			tv = (TextView) this.findViewById(R.id.twoPlayerTeam);
 		if(cursor.moveToFirst()){
+			final String team_id = cursor.getString(1);
 			tv.setText("Owned by: " + cursor.getString(0));
+			tv.setOnClickListener(new View.OnClickListener() {
+				
+				public void onClick(View v) {
+					
+					Intent myIntent = new Intent(v.getContext(), LineupActivity.class);
+					myIntent.putExtra("team_id", team_id);
+					v.getContext().startActivity(myIntent);
+				}
+			});
 		}
 		else{
 			tv.setText("Free Agent");
@@ -379,4 +410,6 @@ public class CompareActivity extends Activity{
 	}
 	
 	private String[] positions;
+	private String one_id;
+	private String two_id;
 }

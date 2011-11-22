@@ -41,18 +41,7 @@ public class LeagueActivity extends Activity {
 		           sv.fullScroll(View.FOCUS_UP);              
 		    }
 		});
-		
-		// Lineup Button
-		final Button myLineup = (Button) findViewById(R.id.viewLineup);
-		myLineup.setOnClickListener(new View.OnClickListener() {
-			
-			public void onClick(View v) {
 				
-				Intent myIntent = new Intent(v.getContext(), LineupActivity.class);
-				startActivityForResult(myIntent,0);
-			}
-		});
-		
 	}
 	
 	

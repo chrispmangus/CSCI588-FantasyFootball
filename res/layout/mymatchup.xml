@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <ImageView
+        android:id="@+id/myMatchupTeam"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:src="@drawable/icon" />
+
+    <ImageView
+        android:id="@+id/opMatchupTeam"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:src="@drawable/other_team_icon" />
+
+    <TextView
+        android:id="@+id/myMatchupName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/myMatchupTeam"
+        android:textColor="@color/mainScreenText"
+        android:textSize="16sp"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/opMatchupName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/mainScreenText"
+        android:layout_alignParentTop="true"
+        android:textSize="16sp"
+        android:layout_toLeftOf="@+id/opMatchupTeam"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/myMatchupScore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/myMatchupTeam"
+        android:layout_alignLeft="@+id/myMatchupName"
+        android:textColor="@color/mainScreenText"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/opMatchupScore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/opMatchupTeam"
+        android:layout_alignRight="@+id/opMatchupName"
+        android:textColor="@color/mainScreenText"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:text="TextView" />
+    
+    <LinearLayout
+        android:id="@+id/myLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/myMatchupTeam" 
+        android:orientation="vertical"/>
+    
+    <LinearLayout
+        android:id="@+id/oLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/opMatchupTeam" 
+        android:orientation="vertical"/>
+    
+</RelativeLayout>

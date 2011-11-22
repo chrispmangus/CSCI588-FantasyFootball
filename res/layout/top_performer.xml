@@ -6,7 +6,7 @@
     android:clickable="true">
 
     <ImageView
-        android:id="@+id/playerPic"
+        android:id="@+id/player__Pic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -18,7 +18,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_marginLeft="15dp"
-        android:layout_toRightOf="@+id/playerPic"
+        android:layout_toRightOf="@+id/player__Pic"
         android:textColor="@color/mainScreenText"
         android:text="TextView" />
 
@@ -56,7 +56,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/playerPic"
+        android:layout_below="@+id/player__Pic"
         android:paddingBottom="2dp"
         android:paddingLeft="5dp"
         android:paddingRight="5dp"

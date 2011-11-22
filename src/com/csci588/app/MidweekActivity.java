@@ -53,17 +53,17 @@ public class MidweekActivity extends Activity {
 	
 		TopPerformerList tpl = new TopPerformerList(this);
 		String query = "SELECT NFL_PLAYERS.fName, NFL_PLAYERS.lName, NFL_PLAYERS._id FROM NFL_PLAYERS";
-	 	setupTab(tpl.createPerformerList(query, dbHelp), "ALL");
+	 	setupTab(tpl.createPerformerList(query, dbHelp,false), "ALL");
 	 	query = "SELECT NFL_PLAYERS.fName, NFL_PLAYERS.lName, NFL_PLAYERS._id FROM NFL_PLAYERS where position_id = 0";
-		setupTab(tpl.createPerformerList(query, dbHelp), "QB");
+		setupTab(tpl.createPerformerList(query, dbHelp,false), "QB");
 		query = "SELECT NFL_PLAYERS.fName, NFL_PLAYERS.lName, NFL_PLAYERS._id FROM NFL_PLAYERS where position_id = 2";
-		setupTab(tpl.createPerformerList(query, dbHelp), "RB");
+		setupTab(tpl.createPerformerList(query, dbHelp,false), "RB");
 		query = "SELECT NFL_PLAYERS.fName, NFL_PLAYERS.lName, NFL_PLAYERS._id FROM NFL_PLAYERS where position_id = 1";
-		setupTab(tpl.createPerformerList(query, dbHelp), "WR");
+		setupTab(tpl.createPerformerList(query, dbHelp,false), "WR");
 		query = "SELECT NFL_PLAYERS.fName, NFL_PLAYERS.lName, NFL_PLAYERS._id FROM NFL_PLAYERS where position_id = 3";
-		setupTab(tpl.createPerformerList(query, dbHelp), "TE");
+		setupTab(tpl.createPerformerList(query, dbHelp,false), "TE");
 		query = "SELECT NFL_PLAYERS.fName, NFL_PLAYERS.lName, NFL_PLAYERS._id FROM NFL_PLAYERS where position_id = 4";
-		setupTab(tpl.createPerformerList(query, dbHelp), "K");
+		setupTab(tpl.createPerformerList(query, dbHelp,false), "K");
 		
 		final ScrollView sv = (ScrollView) this.findViewById(R.id.scrollViewMidweek);
 		sv.post(new Runnable() {            

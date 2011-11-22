@@ -85,15 +85,7 @@ public class GamedayActivity extends Activity {
 			}
 		});
 		
-		final Button myMatchup = (Button) findViewById(R.id.viewMatchup);
-		myMatchup.setOnClickListener(new View.OnClickListener() {
-			
-			public void onClick(View v) {
-				
-				Intent myIntent = new Intent(v.getContext(), MidweekActivity.class);
-				startActivityForResult(myIntent,0);
-			}
-		});
+		
 		
 		final Button otherMatchup = (Button) findViewById(R.id.viewLeague);
 		otherMatchup.setOnClickListener(new View.OnClickListener() {
@@ -105,7 +97,19 @@ public class GamedayActivity extends Activity {
 			}
 		});
 		
-		
+		TextView filter = (TextView) this.findViewById(R.id.filterList);
+		filter.setOnClickListener(new View.OnClickListener() {
+			
+			public void onClick(View v) {
+				boolean flip = flipFilter();
+				TextView f = (TextView)v.findViewById(R.id.filterList);
+				if(flip)
+					f.setText("Filter: FREE");
+				else
+					f.setText("Filter: ALL");
+				refreshTabs();
+			}
+		});
 		
 	}
 	
@@ -115,6 +119,37 @@ public class GamedayActivity extends Activity {
 		setupView(1,9,new TextView(this), false);
 	}
 	
+	private boolean flipFilter(){
+		filterData = !filterData;
+		return filterData;
+	}
+	
+	private void refreshTabs(){
+		TabHost tabs = (TabHost)this.findViewById(R.id.stat_tabhost);
+		tabs.setCurrentTab(0);
+		tabs.clearAllTabs();
+		
+		TopPerformerList tpl = new TopPerformerList(this);
+	 	String query = "select fName, lName,nfl_players._id from nfl_players, nfl_fantasy_stats " +
+				"where nfl_players._id = nfl_fantasy_stats._id order by real_stats DESC";
+	 	setupTab(tpl.createPerformerList(query, dbHelp,filterData), "ALL");
+	 	query = "select fName, lName,nfl_players._id from nfl_players, nfl_fantasy_stats " +
+				"where nfl_players._id = nfl_fantasy_stats._id and position_id = 0 order by real_stats DESC";
+		setupTab(tpl.createPerformerList(query, dbHelp,filterData), "QB");
+		query = "select fName, lName,nfl_players._id from nfl_players, nfl_fantasy_stats " +
+				"where nfl_players._id = nfl_fantasy_stats._id and position_id = 2 order by real_stats DESC";
+		setupTab(tpl.createPerformerList(query, dbHelp,filterData), "RB");
+		query = "select fName, lName,nfl_players._id from nfl_players, nfl_fantasy_stats " +
+				"where nfl_players._id = nfl_fantasy_stats._id and position_id = 1 order by real_stats DESC";
+		setupTab(tpl.createPerformerList(query, dbHelp,filterData), "WR");
+		query = "select fName, lName,nfl_players._id from nfl_players, nfl_fantasy_stats " +
+				"where nfl_players._id = nfl_fantasy_stats._id and position_id = 3 order by real_stats DESC";
+		setupTab(tpl.createPerformerList(query, dbHelp,filterData), "TE");
+		query = "select fName, lName,nfl_players._id from nfl_players, nfl_fantasy_stats " +
+				"where nfl_players._id = nfl_fantasy_stats._id and position_id = 4 order by real_stats DESC";
+		setupTab(tpl.createPerformerList(query, dbHelp,filterData), "K");	
+		
+	}
 	
 	private void setupView(final int our_manager_id, int week, TextView tV, boolean firstFlag){
 		String teamNameQuery = "select username from managers where _id = " + our_manager_id;
@@ -156,6 +191,7 @@ public class GamedayActivity extends Activity {
 		
 		tV = (TextView) this.findViewById(R.id.myTeamName);
 		tV.setText(teamNameInfo.getString(0) + "'s team");
+		final String teamname = teamNameInfo.getString(0);
 		tV.setOnClickListener(new View.OnClickListener() {
 			
 			public void onClick(View v) {
@@ -179,12 +215,14 @@ public class GamedayActivity extends Activity {
 		
 		tV = (TextView) this.findViewById(R.id.myTeamScore);
 		tV.setText(teamScoreInfo.getString(0));
+		final String teamscore = teamScoreInfo.getString(0);
 		
 		tV = (TextView) this.findViewById(R.id.myTeamTime);
 		tV.setText(new SpannableString("20 min"));
 		
 		tV = (TextView) this.findViewById(R.id.vsTeamName);
 		tV.setText(awayNameInfo.getString(0) + "'s team");
+		final String oteamname = awayNameInfo.getString(0);
 		tV.setOnClickListener(new View.OnClickListener() {
 			
 			public void onClick(View v) {
@@ -208,7 +246,7 @@ public class GamedayActivity extends Activity {
 		
 		tV = (TextView) this.findViewById(R.id.vsTeamScore);
 		tV.setText(awayScoreInfo.getString(0));
-		
+		final String oteamscore = awayScoreInfo.getString(0);
 		tV = (TextView) this.findViewById(R.id.vsTeamTime);
 		tV.setText(new SpannableString("60 min"));
 		
@@ -285,22 +323,22 @@ public class GamedayActivity extends Activity {
 	 	TopPerformerList tpl = new TopPerformerList(this);
 	 	String query = "select fName, lName,nfl_players._id from nfl_players, nfl_fantasy_stats " +
 				"where nfl_players._id = nfl_fantasy_stats._id order by real_stats DESC";
-	 	setupTab(tpl.createPerformerList(query, dbHelp), "ALL");
+	 	setupTab(tpl.createPerformerList(query, dbHelp,filterData), "ALL");
 	 	query = "select fName, lName,nfl_players._id from nfl_players, nfl_fantasy_stats " +
 				"where nfl_players._id = nfl_fantasy_stats._id and position_id = 0 order by real_stats DESC";
-		setupTab(tpl.createPerformerList(query, dbHelp), "QB");
+		setupTab(tpl.createPerformerList(query, dbHelp,filterData), "QB");
 		query = "select fName, lName,nfl_players._id from nfl_players, nfl_fantasy_stats " +
 				"where nfl_players._id = nfl_fantasy_stats._id and position_id = 2 order by real_stats DESC";
-		setupTab(tpl.createPerformerList(query, dbHelp), "RB");
+		setupTab(tpl.createPerformerList(query, dbHelp,filterData), "RB");
 		query = "select fName, lName,nfl_players._id from nfl_players, nfl_fantasy_stats " +
 				"where nfl_players._id = nfl_fantasy_stats._id and position_id = 1 order by real_stats DESC";
-		setupTab(tpl.createPerformerList(query, dbHelp), "WR");
+		setupTab(tpl.createPerformerList(query, dbHelp,filterData), "WR");
 		query = "select fName, lName,nfl_players._id from nfl_players, nfl_fantasy_stats " +
 				"where nfl_players._id = nfl_fantasy_stats._id and position_id = 3 order by real_stats DESC";
-		setupTab(tpl.createPerformerList(query, dbHelp), "TE");
+		setupTab(tpl.createPerformerList(query, dbHelp,filterData), "TE");
 		query = "select fName, lName,nfl_players._id from nfl_players, nfl_fantasy_stats " +
 				"where nfl_players._id = nfl_fantasy_stats._id and position_id = 4 order by real_stats DESC";
-		setupTab(tpl.createPerformerList(query, dbHelp), "K");	
+		setupTab(tpl.createPerformerList(query, dbHelp,filterData), "K");	
 		
 		final ScrollView sv = (ScrollView) this.findViewById(R.id.scrollViewGameDay);
 		sv.post(new Runnable() {            
@@ -327,6 +365,24 @@ public class GamedayActivity extends Activity {
 				
 				Intent myIntent = new Intent(v.getContext(), MidweekActivity.class);
 				myIntent.putExtra("team_id", ""+our_manager_id);
+				startActivityForResult(myIntent,0);
+			}
+		});
+		
+		final Button myMatchup = (Button) findViewById(R.id.viewMatchup);
+		myMatchup.setOnClickListener(new View.OnClickListener() {
+			
+			public void onClick(View v) {
+				
+				Intent myIntent = new Intent(v.getContext(), MatchupActivity.class);
+				myIntent.putExtra("team_id", our_manager_id+"");
+				myIntent.putExtra("team_name", teamname);
+				myIntent.putExtra("team_score", teamscore);
+				
+				myIntent.putExtra("oteam_id", awayId+"");
+				myIntent.putExtra("oteam_name", oteamname);
+				myIntent.putExtra("oteam_score", oteamscore);
+				
 				startActivityForResult(myIntent,0);
 			}
 		});
@@ -365,6 +421,7 @@ public class GamedayActivity extends Activity {
 		}
 	}
 
+	private boolean filterData = false;
 	private static DatabaseHelper dbHelp;
 	private TabHost tabs;
 }

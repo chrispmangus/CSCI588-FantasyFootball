@@ -281,13 +281,37 @@
         android:layout_below="@+id/leagueimage"
         android:layout_toRightOf="@+id/viewMatchup"
         android:text="@string/myLeague" />
+    
+    <ImageView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/horizontalLine2"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/viewLeague"
+        android:paddingBottom="2dp"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:paddingTop="2dp"
+        android:scaleType="fitXY"
+        android:src="@android:drawable/divider_horizontal_dark" />
+    <TextView
+        android:id="@+id/filterList"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/horizontalLine2"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/tab_bg_selector"
+        android:text="@string/filter"
+        android:clickable="true"
+        android:layout_margin="4dp" />
 
     
     <TabHost xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/stat_tabhost"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:layout_below="@+id/viewMatchup">
+    android:layout_below="@+id/filterList">
     <LinearLayout android:orientation="vertical"
 		android:layout_width="fill_parent" android:layout_height="fill_parent">
         <TabWidget

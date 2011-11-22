@@ -50,18 +50,24 @@ public class PlayerActivity extends Activity{
 				" or bn5 = " +   p_id +
 				") AND week = 9";
 		String ownerQuery = "select managers.username from managers where managers._id = (" + teamQuery + ")";
-		Cursor managerInfo = GamedayActivity.getDbHelp().getQuery(teamQuery);
+		final Cursor managerInfo = GamedayActivity.getDbHelp().getQuery(teamQuery);
 		final Cursor playerInfo = GamedayActivity.getDbHelp().getQuery("SELECT * from nfl_players where _id = " + p_id);
 		Cursor teamInfo = GamedayActivity.getDbHelp().getQuery(ownerQuery);
 		
 		playerInfo.moveToFirst();
 		final int pos_id = playerInfo.getInt(4);
-		
+				
 		String dialogQuery = "select nfl_players._id,fName,lName, real_stats from nfl_players,nfl_fantasy_stats " +
 				"where nfl_players.position_id = " + pos_id +
 				" and nfl_players._id = nfl_fantasy_stats._id";
 		final Cursor dialogInfo = GamedayActivity.getDbHelp().getQuery(dialogQuery);
 		final CompareCursorAdapter s = new CompareCursorAdapter(this, dialogInfo);
+		
+		String tradeQuery = "select nfl_players._id,fName,lName, real_stats from nfl_players, nfl_fantasy_stats, rosters " +
+				"where nfl_players.position_id = "+pos_id+" and nfl_players._id = nfl_fantasy_stats._id " +
+				"and manager_id = 1 and rosters.week = 9 and nfl_players._id IN (qb,rb1,rb2,wr1,wr2,te,k)";
+		final Cursor tradeInfo = GamedayActivity.getDbHelp().getQuery(tradeQuery);
+		final CompareCursorAdapter trade = new CompareCursorAdapter(this, tradeInfo);
 		
 		/*determines the buttons for the player, based on thier team status
 		 * the 4 states are:
@@ -112,6 +118,28 @@ public class PlayerActivity extends Activity{
 				trd.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT,
 						LayoutParams.WRAP_CONTENT));
 				trd.setText("Trade For");
+				final String oteam = managerInfo.getString(0);
+				trd.setOnClickListener(new View.OnClickListener() {
+					
+					public void onClick(final View v) {
+						//Intent myIntent = new Intent(v.getContext(), CompareActivity.class);
+						//startActivityForResult(myIntent,0);
+						AlertDialog dialog = new AlertDialog.Builder(v.getContext()).setIcon(R.drawable.icon)
+								.setTitle("Pick to trade")
+								.setSingleChoiceItems(trade,0,new DialogInterface.OnClickListener() {
+									
+									public void onClick(DialogInterface dialog, int which) {
+										PlayerActions.tradePlayer(playerIdFromDialog(tradeInfo,which), p_id, "1", oteam);
+										Intent intent = getIntent();
+						            	 finish();
+						            	 startActivity(intent);
+									}
+								})
+								.create();
+						dialog.show();
+						
+					}
+				});
 				ll.addView(trd);
 			} 
 			else {
@@ -305,7 +333,10 @@ public class PlayerActivity extends Activity{
 		
 		ImageView iV = (ImageView) this.findViewById(R.id.player_pic);
 		iV.setBackgroundResource(PictureActions.pickPicture(Integer.parseInt(p_id)));
-		setFantasyTeamName(teamInfo);
+		if(managerInfo.moveToFirst())
+			setFantasyTeamName(teamInfo,managerInfo.getString(0));
+		else
+			setFantasyTeamName();
 		setPositionTeam(playerInfo);
 		setPlayerName(playerInfo);
 		setNextGame(playerInfo, setByeWeek(playerInfo));
@@ -322,15 +353,30 @@ public class PlayerActivity extends Activity{
 		}
 	}
 		
-	private void setFantasyTeamName(Cursor cursor){
+	private void setFantasyTeamName(){
+		TextView tv = (TextView) this.findViewById(R.id.player_fantasy);
+		tv.setText("Free Agent");
+	}
+	
+	private void setFantasyTeamName(Cursor cursor,final String team_id){
 		TextView tv = (TextView) this.findViewById(R.id.player_fantasy);
 		if(cursor.moveToFirst()){
 			tv.setText("Owned by: " + cursor.getString(0));
+			tv.setOnClickListener(new View.OnClickListener() {
+				
+				public void onClick(View v) {
+					
+					Intent myIntent = new Intent(v.getContext(), LineupActivity.class);
+					myIntent.putExtra("team_id", team_id);
+					startActivityForResult(myIntent,0);
+				}
+			});
 		}
 		else{
 			tv.setText("Free Agent");
 		}
 	}
+	
 	
 	private void setPositionTeam(Cursor cursor){
 		TextView tv = (TextView) this.findViewById(R.id.player_posteam);

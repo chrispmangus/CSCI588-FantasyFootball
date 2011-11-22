@@ -27,8 +27,6 @@ public class CompareCursorAdapter extends CursorAdapter {
 		
 		TextView text = (TextView) view.findViewById(R.id.playerName);
 		text.setText(cursor.getString(1) + " " + cursor.getString(2));
-	 	text = (TextView) view.findViewById(R.id.teamName);
-	 	text.setText(cursor.getString(1) + " " + cursor.getString(2));
 	 	text = (TextView) view.findViewById(R.id.realPoints);
 	 	text.setText("Points: " + cursor.getString(3));
 	}

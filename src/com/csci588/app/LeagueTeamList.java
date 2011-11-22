@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,6 +39,9 @@ public class LeagueTeamList {
 	private View itemCreator(String rank, Cursor cursor){
 		LayoutInflater lf = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		View view = lf.inflate(R.layout.league_team, null);
+		if(cursor.getInt(4) == 1){
+			view.setBackgroundColor(Color.parseColor("#212121"));
+		}
 		TextView text = (TextView) view.findViewById(R.id.teamRank);
 		text.setText(rank);
 	 	text = (TextView) view.findViewById(R.id.leagueTeamName);

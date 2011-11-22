@@ -112,6 +112,23 @@ public class PlayerActions {
 		}
 	}
 	
+	public static void tradePlayer(String p_id, String op_id, String team_id, String oteam_id){
+		String[] teamSpots = {"qb","wr1","wr2","wrt","rb1","rb2","k","te"};
+		for(int i =0 ; i < teamSpots.length; i++){
+			String dropQuery = "update rosters set " + teamSpots[i] + "="+ op_id + " where " + teamSpots[i] + "= " + p_id + " and manager_id=" + team_id + " and week= 9";
+			Cursor cu = GamedayActivity.getDbHelp().getQuery(dropQuery);
+			cu.moveToFirst();
+			cu.close();
+		}
+		
+		for(int i =0 ; i < teamSpots.length; i++){
+			String dropQuery = "update rosters set " + teamSpots[i] + "="+ p_id + " where " + teamSpots[i] + "= " + op_id + " and manager_id=" + oteam_id + " and week= 9";
+			Cursor cu = GamedayActivity.getDbHelp().getQuery(dropQuery);
+			cu.moveToFirst();
+			cu.close();
+		}
+	}
+	
 	/*requires: filled blanks array
 	 * this function checks through a bench roster cursor and sees if there are any
 	 * empty spaces for filling
