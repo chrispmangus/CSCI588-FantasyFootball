@@ -9,8 +9,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:color="@color/clicky"
-        android:textSize="13sp"
+        android:color="@android:color/white"
+        android:textSize="14sp"
         android:text="TextView" />
 
     
@@ -21,9 +21,9 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/myFirst"
         android:layout_centerHorizontal="true"
-        android:color="@color/mainScreenText"
+        android:color="@android:color/white"
         android:textStyle="bold"
-        android:textSize="17sp"
+        android:textSize="22sp"
         android:text="TextView" />
 
 </RelativeLayout>

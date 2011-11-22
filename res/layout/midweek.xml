@@ -27,7 +27,7 @@
         android:layout_below="@+id/title_header"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="7dp"
-        android:src="@drawable/whitebox" />
+        android:src="@drawable/main_banner" />
     
     <TextView
         android:id="@+id/leagueName"
@@ -45,7 +45,7 @@
         android:layout_below="@+id/leagueName"
         android:layout_toLeftOf="@+id/leagueName"        
         android:layout_marginTop="4dp"
-        android:src="@drawable/teambox" />
+        android:src="@drawable/icon" />
         
     <TextView
         android:id="@+id/vs"

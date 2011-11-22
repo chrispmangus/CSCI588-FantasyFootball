@@ -34,4 +34,6 @@
 	<string name="standingsStr">Standings</string>
 	<string name="pointsStr">Points</string>
 	<string name="wltStr">W-L-T</string>
+	<string name="gameday">gameday</string>
+	<string name="midweek">midweek</string>
 </resources>

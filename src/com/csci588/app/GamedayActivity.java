@@ -25,8 +25,11 @@ public class GamedayActivity extends Activity {
 	/*called when activity is first created */
 	@Override
 	public void onCreate(Bundle savedInstanceState){
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.gameday);
+		super.onCreate(savedInstanceState);		
+		
+		int flag = getIntent().getIntExtra("flag", 1);
+		
+		
 
 		dbHelp = new DatabaseHelper(this);
 		try {
@@ -48,7 +51,8 @@ public class GamedayActivity extends Activity {
 	 		throw sqle;
 	 
 	 	}
-		
+	 	
+	 	setContentView(R.layout.gameday);
 		final int our_manager_id = 1;
 		int week = 9;
 		
@@ -379,7 +383,7 @@ public class GamedayActivity extends Activity {
 				myIntent.putExtra("team_name", teamname);
 				myIntent.putExtra("team_score", teamscore);
 				
-				myIntent.putExtra("oteam_id", awayId+"");
+				myIntent.putExtra("oteam_id", awayTeam+"");
 				myIntent.putExtra("oteam_name", oteamname);
 				myIntent.putExtra("oteam_score", oteamscore);
 				

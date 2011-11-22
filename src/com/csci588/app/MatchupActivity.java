@@ -49,7 +49,7 @@ public class MatchupActivity extends Activity{
 			public void onClick(View v) {
 				
 				Intent myIntent = new Intent(v.getContext(), LineupActivity.class);
-				myIntent.putExtra("team_id", oteam_id);
+				myIntent.putExtra("team_id", "2");
 				startActivityForResult(myIntent,0);
 			}
 		});
