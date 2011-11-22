@@ -17,7 +17,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/title_header"
         android:layout_marginRight="4dp"
-        android:text="Standings" />
+        android:text="@string/standingsStr" />
     
 	<TextView
 		android:id="@+id/points"
@@ -28,7 +28,7 @@
     	android:layout_marginLeft="50dp"
    	 	android:layout_marginRight="20dp"
    	 	android:textSize="12sp"
-    	android:text="Points"/>	
+    	android:text="@string/pointsStr"/>	
 
 	<TextView
 		android:id="@+id/wlt"
@@ -39,7 +39,68 @@
     	android:layout_marginLeft="50dp"
     	android:layout_marginRight="10dp"
    	 	android:textSize="12sp"
-    	android:text="W-L-T"/>	          
+    	android:text="@string/wltStr"/>	
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:id="@+id/buttons"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" 
+   	android:layout_alignParentBottom="true">    
+   	
+   	<ImageView
+       android:id="@+id/lineupimg"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+
+       android:src="@drawable/teambox" />
+       
+    <ImageView
+        android:id="@+id/matchupimage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/lineupimg"
+        android:layout_toRightOf="@+id/lineupimg"
+       	android:layout_marginLeft="10dp"
+        android:src="@drawable/teambox" />
+        
+    <ImageView
+        android:id="@+id/othermatchupimage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/lineupimg"
+        android:layout_toRightOf="@+id/matchupimage"
+       	android:layout_marginLeft="10dp"        
+        android:src="@drawable/teambox" />
+        
+    <Button
+        android:id="@+id/viewLineup"
+        android:layout_width="60dp"
+        android:layout_height="45dp"
+        android:layout_below="@+id/lineupimg"
+        android:textSize="10sp"
+        android:layout_marginLeft="-5dp"
+        android:text="@string/myLineup" />
+    
+    <Button
+        android:id="@+id/viewMatchup"
+        android:layout_width="65dp"
+        android:layout_height="45dp"
+        android:layout_below="@+id/matchupimage"
+        android:layout_toRightOf="@+id/viewLineup"
+        android:textSize="10sp"
+        android:text="@string/myMatchup" />
+    
+    <Button
+        android:id="@+id/otherMachups"
+        android:layout_width="70dp"
+        android:layout_height="45dp"
+        android:layout_below="@+id/othermatchupimage"
+        android:layout_toRightOf="@+id/viewMatchup"
+        android:textSize="10sp"
+        android:text="@string/otherMatchups" />           
+        
+ </RelativeLayout>              
+>>>>>>> refs/remotes/origin/master
        
  	<ScrollView 
 		android:id="@+id/standingsScroll"
