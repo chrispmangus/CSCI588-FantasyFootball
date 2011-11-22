@@ -30,4 +30,7 @@
 	<string name="search_hint">Type in First/Last Name of player</string>
 	<string name="leagueStandingsHeader">League Standings</string>
 	<string name="otherMatchups">Other Matchups</string>
+	<string name="standingsStr">Standings</string>
+	<string name="pointsStr">Points</string>
+	<string name="wltStr">W-L-T</string>
 </resources>

@@ -17,7 +17,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/title_header"
         android:layout_marginRight="4dp"
-        android:text="Standings" />
+        android:text="@string/standingsStr" />
     
 	<TextView
 		android:id="@+id/points"
@@ -28,7 +28,7 @@
     	android:layout_marginLeft="50dp"
    	 	android:layout_marginRight="20dp"
    	 	android:textSize="12sp"
-    	android:text="Points"/>	
+    	android:text="@string/pointsStr"/>	
 
 	<TextView
 		android:id="@+id/wlt"
@@ -39,7 +39,7 @@
     	android:layout_marginLeft="50dp"
     	android:layout_marginRight="10dp"
    	 	android:textSize="12sp"
-    	android:text="W-L-T"/>	
+    	android:text="@string/wltStr"/>	
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	android:id="@+id/buttons"
