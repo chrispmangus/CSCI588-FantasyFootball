@@ -1,0 +1,105 @@
+package com.csci588.app;
+
+public class PictureActions {
+
+	public static int pickPicture(int p_id){
+		switch(p_id){
+		case 1:
+			 return R.drawable.p1;
+		case 2:
+			 return R.drawable.p2;
+		case 3:
+			 return R.drawable.p3;
+		case 4:
+			 return R.drawable.p4;
+		case 5:
+			 return R.drawable.p5;
+		case 6:
+			 return R.drawable.p6;
+		case 7:
+			 return R.drawable.p7;
+		case 8:
+			 return R.drawable.p8;
+		case 9:
+			 return R.drawable.p9;
+		case 10:
+			 return R.drawable.p10;
+		case 11:
+			 return R.drawable.p11;
+		case 12:
+			 return R.drawable.p12;
+		case 13:
+			 return R.drawable.p13;
+		case 14:
+			 return R.drawable.p14;
+		case 15:
+			 return R.drawable.p15;
+		case 16:
+			 return R.drawable.p16;
+		case 17:
+			 return R.drawable.p17;
+		case 18:
+			 return R.drawable.p18;
+		case 19:
+			 return R.drawable.p19;
+		case 20:
+			 return R.drawable.p20;
+		case 21:
+			 return R.drawable.p21;
+		case 22:
+			 return R.drawable.p22;
+		case 23:
+			 return R.drawable.p23;
+		case 24:
+			 return R.drawable.p24;
+		case 25:
+			 return R.drawable.p25;
+		case 26:
+			 return R.drawable.p26;
+		case 27:
+			 return R.drawable.p27;
+		case 28:
+			 return R.drawable.p28;
+		case 29:
+			 return R.drawable.p29;
+		case 30:
+			 return R.drawable.p30;
+		case 31:
+			 return R.drawable.p31;
+		case 32:
+			 return R.drawable.p32;
+		case 33:
+			 return R.drawable.p33;
+		case 34:
+			 return R.drawable.p34;
+		case 35:
+			 return R.drawable.p35;
+		case 36:
+			 return R.drawable.p36;
+		case 37:
+			 return R.drawable.p37;
+		case 38:
+			 return R.drawable.p38;
+		case 39:
+			 return R.drawable.p39;
+		case 40:
+			 return R.drawable.p40;
+		case 41:
+			 return R.drawable.p41;
+		case 42:
+			 return R.drawable.p42;
+		case 43:
+			 return R.drawable.p43;
+		case 44:
+			 return R.drawable.p44;
+		case 45:
+			 return R.drawable.p45;
+		case 46:
+			 return R.drawable.p46;
+		case 47:
+			 return R.drawable.p47;
+		default:
+			return R.drawable.p47;
+		}
+	}
+}

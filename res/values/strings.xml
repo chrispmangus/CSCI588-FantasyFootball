@@ -25,5 +25,7 @@
     <string name="starting_lineup">Starting Lineup</string>
     <string name="bench_players">Bench Players</string>
     <string name="playerName">Name</string>
-
+	<string name="bench">BN</string>
+	<string name="search_label">Search</string>
+	<string name="search_hint">Type in First/Last Name of player</string>
 </resources>

@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="clicky">#C0C0C0</color>
-
+    <color name="mainScreenText">#FFFFFF</color>
+    <color name="basicText">#C2C2C2</color>
+    <color name="rosterTextBg">#474747</color>
+	<color name="rosterBg">#0F0F0F</color>
     
 </resources>

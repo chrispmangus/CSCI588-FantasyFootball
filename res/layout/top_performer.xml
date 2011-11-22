@@ -10,8 +10,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:src="@drawable/playerbox" />
+        android:layout_alignParentTop="true" />
 
     <TextView
         android:id="@+id/playerName"
@@ -20,6 +19,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginLeft="15dp"
         android:layout_toRightOf="@+id/playerPic"
+        android:textColor="@color/mainScreenText"
         android:text="TextView" />
 
     <TextView
@@ -28,6 +28,7 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/playerName"
         android:layout_below="@+id/playerName"
+        android:textColor="@color/mainScreenText"
         android:text="TextView" />
 
     <TextView
@@ -37,6 +38,7 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
         android:layout_marginRight="26dp"
+        android:textColor="@color/mainScreenText"
         android:text="TextView" />
 
     <TextView
@@ -45,6 +47,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/realPoints"
         android:layout_alignRight="@+id/realPoints"
+        android:textColor="@color/basicText"
         android:text="TextView" />
     
     <ImageView

@@ -4,7 +4,7 @@
     android:layout_height="fill_parent"
     android:background="@drawable/tab_bg_selector"
     android:orientation="vertical"
-    android:padding="3dp" >
+    android:padding="4dp" >
 
     <TextView
         android:id="@+id/tabText"
@@ -12,5 +12,5 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:textColor="@drawable/tab_text_selector"
-        android:textSize="13dp" />
+        android:textSize="14dp" />
 </LinearLayout>

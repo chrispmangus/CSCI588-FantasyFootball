@@ -18,6 +18,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
+        android:textColor="@color/basicText"
         android:text="@string/header" />
 
     <ImageView
@@ -27,7 +28,7 @@
         android:layout_below="@+id/title_header"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="7dp"
-        android:src="@drawable/whitebox" />
+        android:src="@drawable/main_banner" />
 
     <TextView
         android:id="@+id/leagueName"
@@ -35,6 +36,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/banner"
+        android:textColor="@color/basicText"
         android:layout_marginTop="1dp"
         android:text="TextView" />
 
@@ -45,7 +47,7 @@
         android:layout_below="@+id/leagueName"
         android:layout_marginTop="4dp"
         android:layout_toLeftOf="@+id/title_header"
-        android:src="@drawable/teambox" />
+        android:src="@drawable/icon" />
 
     <ImageView
         android:id="@+id/vsTeamImg"
@@ -53,7 +55,7 @@
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/myTeamImg"
         android:layout_toRightOf="@+id/title_header"
-        android:src="@drawable/teambox" />
+        android:src="@drawable/other_team_icon" />
 
     <TextView
         android:id="@+id/myTeamName"
@@ -62,8 +64,9 @@
         android:layout_alignTop="@+id/myTeamImg"
         android:layout_toRightOf="@+id/myTeamImg"
         android:layout_marginLeft="15dp"
+        android:textColor="@color/mainScreenText"
         android:maxLength="15"
-        android:textSize="10sp"
+        android:textSize="13sp"
         android:text="TextView" />
 
     <TextView
@@ -72,7 +75,8 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/myTeamName"
         android:layout_below="@+id/myTeamName"
-        android:textSize="13sp"
+        android:textSize="16sp"
+        android:textColor="@color/mainScreenText"
         android:textStyle="bold"
         android:text="TextView" />
 
@@ -82,7 +86,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/myTeamScore"
         android:layout_alignLeft="@+id/myTeamScore"
-        android:textSize="9sp"
+        android:textColor="@color/mainScreenText"
+        android:textSize="11sp"
         android:text="TextView" />
 
     <TextView
@@ -92,8 +97,9 @@
         android:layout_alignTop="@+id/myTeamName"
         android:layout_toLeftOf="@+id/vsTeamImg"
         android:layout_marginRight="15dp"
+        android:textColor="@color/mainScreenText"
         android:maxLength="15"
-        android:textSize="10sp"
+        android:textSize="13sp"
         android:text="TextView" />
 
     <TextView
@@ -102,7 +108,8 @@
         android:layout_height="wrap_content"
         android:layout_alignRight="@+id/vsTeamName"
         android:layout_below="@+id/vsTeamName"
-        android:textSize="13sp"
+        android:textColor="@color/mainScreenText"
+        android:textSize="15sp"
         android:textStyle="bold"
         android:text="TextView" />
 
@@ -112,7 +119,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/vsTeamScore"
         android:layout_alignRight="@+id/vsTeamScore"
-        android:textSize="9sp"
+        android:textColor="@color/mainScreenText"
+        android:textSize="11sp"
         android:text="TextView" />
 
     <TextView
@@ -121,6 +129,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/myTeamImg"
         android:layout_centerHorizontal="true"
+        android:textColor="@color/basicText"
         android:text="TextView" />
 
     <ImageView
@@ -130,8 +139,7 @@
         android:layout_toLeftOf="@+id/topPerformers"
         android:layout_below="@+id/topPerformers"
         android:layout_marginRight="-40dp"
-        android:layout_marginTop="5dp"
-        android:src="@drawable/playerbox" />
+        android:layout_marginTop="5dp" />
 
     <ImageView
         android:id="@+id/vsTopPerform"
@@ -139,8 +147,7 @@
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/topPerformers"
         android:layout_alignTop="@+id/myTopPerform"
-        android:layout_marginLeft="-40dp"
-        android:src="@drawable/playerbox" />
+        android:layout_marginLeft="-40dp" />
 
 
     <TextView
@@ -150,6 +157,7 @@
         android:layout_alignTop="@+id/myTopPerform"
         android:layout_toLeftOf="@+id/myTopPerform"
         android:layout_marginTop="-5dp"
+        android:textColor="@color/basicText"
         android:layout_marginRight="5dp"
         android:textSize="10sp"
         android:maxLength="18"
@@ -161,6 +169,7 @@
         android:layout_height="wrap_content"
         android:layout_alignRight="@+id/myTopName"
         android:layout_below="@+id/myTopName"
+        android:textColor="@color/basicText"
         android:textSize="9sp"
         android:text="TextView" />
 
@@ -170,6 +179,7 @@
         android:layout_height="wrap_content"
         android:layout_alignRight="@+id/myTopTime"
         android:layout_below="@+id/myTopTime"
+        android:textColor="@color/basicText"
         android:textSize="13sp"
         android:textStyle="bold"
         android:text="TextView" />
@@ -182,6 +192,7 @@
         android:layout_alignTop="@+id/vsTopPerform"
         android:layout_toRightOf="@+id/vsTopPerform"
         android:layout_marginTop="-5dp"
+        android:textColor="@color/basicText"
         android:layout_marginLeft="5dp"
         android:textSize="10sp"
         android:maxLength="18"
@@ -193,6 +204,7 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/vsTopName"
         android:layout_below="@+id/vsTopName"
+        android:textColor="@color/basicText"
         android:textSize="9sp"
         android:text="TextView" />
 
@@ -202,6 +214,7 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/vsTopTime"
         android:layout_below="@+id/vsTopTime"
+        android:textColor="@color/basicText"
         android:textSize="13sp"
         android:textStyle="bold"
         android:text="TextView" />
@@ -227,7 +240,7 @@
         android:layout_height="wrap_content"
         android:layout_toLeftOf="@+id/myTeamTime"
         android:layout_below="@+id/horizontalLine"
-        android:src="@drawable/teambox" />
+        android:src="@drawable/lineup" />
 
     <ImageView
         android:id="@+id/matchupimage"
@@ -235,7 +248,7 @@
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/lineupimg"
         android:layout_centerHorizontal="true"
-        android:src="@drawable/teambox" />
+        android:src="@drawable/matchup" />
 
     <ImageView
         android:id="@+id/leagueimage"
@@ -243,7 +256,7 @@
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/matchupimage"
         android:layout_toRightOf="@+id/vsTeamTime"
-        android:src="@drawable/teambox" />
+        android:src="@drawable/league" />
 
     <Button
         android:id="@+id/viewLineup"

@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+<ScrollView
+    android:layout_height="fill_parent"
+    android:layout_width="fill_parent"
+    >
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
     <ImageView
@@ -46,18 +54,10 @@
         android:text="TextView" />
 
     <TextView
-        android:id="@+id/currentRecord"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/currentRank"
-        android:layout_below="@+id/currentRank"
-        android:text="TextView" />
-
-    <TextView
         android:id="@+id/startingLineup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/currentRecord"
+        android:layout_below="@+id/currentRank"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="10dp"
         android:text="@string/starting_lineup" />
@@ -141,6 +141,8 @@
     android:layout_alignLeft="@+id/startingLineup"
     android:layout_below="@+id/k_pos"
     android:text="@string/bench_players" />
+    
+    
 
 <HorizontalScrollView
     android:id="@+id/bench_lineup"
@@ -150,5 +152,6 @@
     android:layout_alignParentLeft="true">
 
     </HorizontalScrollView>
-
+</RelativeLayout>
+</ScrollView>
 </RelativeLayout>

@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+<ScrollView
+    android:layout_height="fill_parent"
+    android:layout_width="fill_parent"
+    >
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
     <ImageView
@@ -10,8 +17,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_marginLeft="28dp"
-        android:layout_marginTop="14dp"
-        android:src="@drawable/playerbox" />
+        android:layout_marginTop="14dp" />
 
     <TextView
         android:id="@+id/player_name"
@@ -55,10 +61,18 @@
         android:text="TextView" />
     
     <LinearLayout 
+        android:id="@+id/buttonLayout"
         android:layout_below="@+id/player_nextgame"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/buttonLayout" />
+         />
+    <LinearLayout
+        android:id="@+id/stats_layout"
+        android:layout_below="@+id/buttonLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"/>
         
-
+</RelativeLayout>
+</ScrollView>
 </RelativeLayout>
