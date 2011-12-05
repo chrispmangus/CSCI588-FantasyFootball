@@ -22,12 +22,14 @@ import android.widget.TextView;
 
 public class GamedayActivity extends Activity {
 	
+	boolean flag = true;
+	
 	/*called when activity is first created */
 	@Override
 	public void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);		
 		
-		int flag = getIntent().getIntExtra("flag", 1);
+		flag = getIntent().getBooleanExtra("flag", true);
 		
 		
 
@@ -52,17 +54,104 @@ public class GamedayActivity extends Activity {
 	 
 	 	}
 	 	
-	 	setContentView(R.layout.gameday);
-		final int our_manager_id = 1;
+	 	final int our_manager_id = 1;
 		int week = 9;
+	 	
+	 	if(flag){
+		 	setContentView(R.layout.gameday);
+		 	
+		 	
+		 	/* Necessary for underlining TOP PERFORMER textview */
+			TextView tV = (TextView) this.findViewById(R.id.topPerformers);
+			SpannableString content = new SpannableString("TOP PERFORMERS");
+			content.setSpan(new UnderlineSpan(), 0 , content.length(), 0);
+			tV.setText(content);
+			
+			setupGamedayView(our_manager_id,week,tV, true);
+		 	
+		 	
+		 	
+		 	final Button myLineup = (Button) findViewById(R.id.viewLineup);
+			myLineup.setOnClickListener(new View.OnClickListener() {
+				
+				public void onClick(View v) {
+					
+					Intent myIntent = new Intent(v.getContext(), LineupActivity.class);
+					myIntent.putExtra("team_id", "1");
+					startActivityForResult(myIntent,0);
+				}
+			});
+			
+			
+			
+			final Button otherMatchup = (Button) findViewById(R.id.viewLeague);
+			otherMatchup.setOnClickListener(new View.OnClickListener() {
+				
+				public void onClick(View v) {
+					
+					Intent myIntent = new Intent(v.getContext(), LeagueActivity.class);
+					startActivityForResult(myIntent,0);
+				}
+			});
+			
+			TextView filter = (TextView) this.findViewById(R.id.filterList);
+			filter.setOnClickListener(new View.OnClickListener() {
+				
+				public void onClick(View v) {
+					boolean flip = flipFilter();
+					TextView f = (TextView)v.findViewById(R.id.filterList);
+					if(flip)
+						f.setText("Filter: FREE");
+					else
+						f.setText("Filter: ALL");
+					refreshTabs();
+				}
+			});
+	 	}else{
+	 		setContentView(R.layout.midweek);
+	 		setupMidweekView(our_manager_id,week,true);
+	 		
+	 		final Button myLineup = (Button) findViewById(R.id.viewEditLineup);
+			myLineup.setOnClickListener(new View.OnClickListener() {
+				
+				public void onClick(View v) {
+					
+					Intent myIntent = new Intent(v.getContext(), LineupActivity.class);
+					myIntent.putExtra("team_id", "1");
+					startActivityForResult(myIntent,0);
+				}
+			});
+			
+			
+			
+			final Button otherMatchup = (Button) findViewById(R.id.viewLeague);
+			otherMatchup.setOnClickListener(new View.OnClickListener() {
+				
+				public void onClick(View v) {
+					
+					Intent myIntent = new Intent(v.getContext(), LeagueActivity.class);
+					startActivityForResult(myIntent,0);
+				}
+			});
+	 		
+	 		
+	 		TextView filter = (TextView) this.findViewById(R.id.filterList);
+			filter.setOnClickListener(new View.OnClickListener() {
+				
+				public void onClick(View v) {
+					boolean flip = flipFilter();
+					TextView f = (TextView)v.findViewById(R.id.filterList);
+					if(flip)
+						f.setText("Filter: FREE");
+					else
+						f.setText("Filter: ALL");
+					refreshTabs();
+				}
+			});
+	 	}
 		
-		/* Necessary for underlining TOP PERFORMER textview */
-		TextView tV = (TextView) this.findViewById(R.id.topPerformers);
-		SpannableString content = new SpannableString("TOP PERFORMERS");
-		content.setSpan(new UnderlineSpan(), 0 , content.length(), 0);
-		tV.setText(content);
 		
-		setupView(our_manager_id,week,tV, true);
+		
 		
 		
 		/*0-- TODO LEAGUE IMAGE CLICK
@@ -78,49 +167,17 @@ public class GamedayActivity extends Activity {
 		});*/
 		
 		
-		final Button myLineup = (Button) findViewById(R.id.viewLineup);
-		myLineup.setOnClickListener(new View.OnClickListener() {
-			
-			public void onClick(View v) {
-				
-				Intent myIntent = new Intent(v.getContext(), LineupActivity.class);
-				myIntent.putExtra("team_id", "1");
-				startActivityForResult(myIntent,0);
-			}
-		});
 		
-		
-		
-		final Button otherMatchup = (Button) findViewById(R.id.viewLeague);
-		otherMatchup.setOnClickListener(new View.OnClickListener() {
-			
-			public void onClick(View v) {
-				
-				Intent myIntent = new Intent(v.getContext(), LeagueActivity.class);
-				startActivityForResult(myIntent,0);
-			}
-		});
-		
-		TextView filter = (TextView) this.findViewById(R.id.filterList);
-		filter.setOnClickListener(new View.OnClickListener() {
-			
-			public void onClick(View v) {
-				boolean flip = flipFilter();
-				TextView f = (TextView)v.findViewById(R.id.filterList);
-				if(flip)
-					f.setText("Filter: FREE");
-				else
-					f.setText("Filter: ALL");
-				refreshTabs();
-			}
-		});
 		
 	}
 	
 	@Override
 	protected void onRestart(){
 		super.onRestart();
-		setupView(1,9,new TextView(this), false);
+		if(flag)
+			setupGamedayView(1,9,new TextView(this), false);
+		else
+			setupMidweekView(1,9,false);
 	}
 	
 	private boolean flipFilter(){
@@ -155,7 +212,87 @@ public class GamedayActivity extends Activity {
 		
 	}
 	
-	private void setupView(final int our_manager_id, int week, TextView tV, boolean firstFlag){
+	private void setupMidweekView(final int our_manager_id, int week, boolean firstFlag){
+		TextView tV = (TextView) this.findViewById(R.id.leagueName);
+		tV.setText("Fantasy Football League");
+
+		tV = (TextView) this.findViewById(R.id.myTeamName);
+		tV.setText("Joe's Team");
+
+		tV = (TextView) this.findViewById(R.id.myTeamRecord);
+		tV.setText("7-0-1");
+
+		tV = (TextView) this.findViewById(R.id.myTeamRank);
+		tV.setText("1 of 6");
+
+		tV = (TextView) this.findViewById(R.id.vsTeamName);
+		tV.setText("Sue's Team");
+
+		tV = (TextView) this.findViewById(R.id.alert);
+		tV.setText("Mike Vick Questionable");
+
+		tabs = (TabHost)this.findViewById(R.id.stat_tabhost);
+		tabs.setup();
+
+		DatabaseHelper dbHelp = GamedayActivity.getDbHelp();
+
+		if(firstFlag)
+			tabs.setup();
+		else{
+			tabs.setCurrentTab(0);
+			tabs.clearAllTabs();
+		}
+		
+		TopPerformerList tpl = new TopPerformerList(this);
+	 	String query = "select fName, lName,nfl_players._id from nfl_players, nfl_fantasy_stats " +
+				"where nfl_players._id = nfl_fantasy_stats._id order by real_stats DESC";
+	 	setupTab(tpl.createPerformerList(query, dbHelp,filterData), "ALL");
+	 	query = "select fName, lName,nfl_players._id from nfl_players, nfl_fantasy_stats " +
+				"where nfl_players._id = nfl_fantasy_stats._id and position_id = 0 order by real_stats DESC";
+		setupTab(tpl.createPerformerList(query, dbHelp,filterData), "QB");
+		query = "select fName, lName,nfl_players._id from nfl_players, nfl_fantasy_stats " +
+				"where nfl_players._id = nfl_fantasy_stats._id and position_id = 2 order by real_stats DESC";
+		setupTab(tpl.createPerformerList(query, dbHelp,filterData), "RB");
+		query = "select fName, lName,nfl_players._id from nfl_players, nfl_fantasy_stats " +
+				"where nfl_players._id = nfl_fantasy_stats._id and position_id = 1 order by real_stats DESC";
+		setupTab(tpl.createPerformerList(query, dbHelp,filterData), "WR");
+		query = "select fName, lName,nfl_players._id from nfl_players, nfl_fantasy_stats " +
+				"where nfl_players._id = nfl_fantasy_stats._id and position_id = 3 order by real_stats DESC";
+		setupTab(tpl.createPerformerList(query, dbHelp,filterData), "TE");
+		query = "select fName, lName,nfl_players._id from nfl_players, nfl_fantasy_stats " +
+				"where nfl_players._id = nfl_fantasy_stats._id and position_id = 4 order by real_stats DESC";
+		setupTab(tpl.createPerformerList(query, dbHelp,filterData), "K");	
+		
+		
+		final ScrollView sv = (ScrollView) this.findViewById(R.id.scrollViewMidweek);
+		sv.post(new Runnable() {            
+		    public void run() {
+		           sv.fullScroll(View.FOCUS_UP);              
+		    }
+		});
+		
+		final Button myMatchup = (Button) findViewById(R.id.viewTrade);
+		myMatchup.setOnClickListener(new View.OnClickListener() {
+			
+			public void onClick(View v) {
+				
+				Intent myIntent = new Intent(v.getContext(), MatchupActivity.class);
+				myIntent.putExtra("team_id", our_manager_id+"");
+				myIntent.putExtra("team_name", "Joe");
+				myIntent.putExtra("team_score", "149.2");
+				
+				myIntent.putExtra("oteam_id", 2+"");
+				myIntent.putExtra("oteam_name", "Sue");
+				myIntent.putExtra("oteam_score", "141.7");
+				
+				startActivityForResult(myIntent,0);
+			}
+		});
+		
+	}
+	
+	
+	private void setupGamedayView(final int our_manager_id, int week, TextView tV, boolean firstFlag){
 		String teamNameQuery = "select username from managers where _id = " + our_manager_id;
 		String teamScoreQuery = "select sum(real_stats) from nfl_fantasy_stats, rosters " +
 				"where manager_id = "+ our_manager_id+ " and rosters.week = " + week + " and " +

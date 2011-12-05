@@ -34,6 +34,8 @@
 	<string name="standingsStr">Standings</string>
 	<string name="pointsStr">Points</string>
 	<string name="wltStr">W-L-T</string>
-	<string name="gameday">gameday</string>
-	<string name="midweek">midweek</string>
+	<string name="gameday">Gameday View</string>
+	<string name="midweek">Midweek View</string>
+	<string name="driverHeader">Choose what starting interface you want!</string>
+	<string name="viewMatchup">View Matchup</string>
 </resources>

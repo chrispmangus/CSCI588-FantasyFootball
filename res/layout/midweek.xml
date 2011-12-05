@@ -26,7 +26,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/title_header"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="7dp"
+        android:layout_marginTop="1dp"
         android:src="@drawable/main_banner" />
     
     <TextView
@@ -43,8 +43,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/leagueName"
-        android:layout_toLeftOf="@+id/leagueName"        
-        android:layout_marginTop="4dp"
+        android:layout_toLeftOf="@+id/leagueName"
         android:src="@drawable/icon" />
         
     <TextView
@@ -128,11 +127,11 @@
 
     <ImageView
         xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/horizontalLine"
+        android:id="@+id/horizontalLineMidweek"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/alert"
+        android:layout_below="@+id/myTeamImg"
         android:paddingBottom="2dp"
         android:paddingLeft="5dp"
         android:paddingRight="5dp"
@@ -141,23 +140,14 @@
         android:src="@android:drawable/divider_horizontal_dark" />
         
 <!-- Button Pictures -->
-    <ImageView
-        android:id="@+id/addplayersimg"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/horizontalLine"
-        android:layout_alignLeft="@+id/myTeamImg"
-        android:layout_marginTop="4dp"
-        android:src="@drawable/teambox" />
 
     <ImageView
         android:id="@+id/editlineupimg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/addplayersimg"
-        android:layout_toRightOf="@+id/addplayersimg"
-        android:layout_marginLeft="10dp"
-        android:src="@drawable/teambox" />
+        android:layout_below="@+id/horizontalLineMidweek"
+        android:layout_marginLeft="50dp"
+        android:src="@drawable/lineup" />
 
     <ImageView
         android:id="@+id/leagueimage"
@@ -166,7 +156,7 @@
         android:layout_alignTop="@+id/editlineupimg"
         android:layout_toRightOf="@+id/editlineupimg"
         android:layout_marginLeft="10dp"
-        android:src="@drawable/teambox" />
+        android:src="@drawable/league" />
 
    <ImageView
         android:id="@+id/tradeimg"
@@ -175,17 +165,9 @@
         android:layout_alignTop="@+id/leagueimage"
         android:layout_toRightOf="@+id/leagueimage"
         android:layout_marginLeft="10dp"
-        android:src="@drawable/teambox" />
+        android:src="@drawable/matchup" />
         
 <!-- BUTTONS!!! -->   
-    <Button
-        android:id="@+id/viewAddPlayers"
-        android:layout_width="60dp"
-        android:layout_height="55dp"
-        android:layout_below="@+id/addplayersimg"
-        android:layout_alignLeft="@+id/addplayersimg"
-        android:layout_marginLeft="-3dp"
-        android:text="@string/addPlayersStr" />
     
     <Button
         android:id="@+id/viewEditLineup"
@@ -193,7 +175,7 @@
         android:layout_height="55dp"
         android:layout_below="@+id/editlineupimg"
         android:layout_alignLeft="@+id/editlineupimg"
-        android:layout_marginLeft="-8dp"
+        android:layout_marginLeft="-3dp"
         android:text="@string/editLineupStr" />
 
     <Button
@@ -202,24 +184,35 @@
         android:layout_height="55dp"
         android:layout_below="@+id/leagueimage"
         android:layout_alignLeft="@+id/leagueimage"
-        android:layout_marginLeft="-8dp"
+        android:layout_marginLeft="-3dp"
         android:text="@string/myLeague" />    
     
     <Button
         android:id="@+id/viewTrade"
-        android:layout_width="60dp"
+        android:layout_width="68dp"
         android:layout_height="55dp"
         android:layout_below="@+id/tradeimg"
         android:layout_alignLeft="@+id/tradeimg"
         android:layout_marginLeft="-3dp"
-        android:text="@string/tradeStr" />
+        android:text="@string/viewMatchup" />
+    
+    <TextView
+        android:id="@+id/filterList"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/viewEditLineup"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/tab_bg_selector"
+        android:text="@string/filter"
+        android:clickable="true"
+        android:layout_margin="4dp" />
         
 <!-- TABS -->    
         <TabHost xmlns:android="http://schemas.android.com/apk/res/android"
 	    android:id="@+id/stat_tabhost"
 	    android:layout_width="fill_parent"
 	    android:layout_height="fill_parent"
-	    android:layout_below="@+id/viewEditLineup">
+	    android:layout_below="@+id/filterList">
 	    <LinearLayout android:orientation="vertical"
 			android:layout_width="fill_parent" android:layout_height="fill_parent">
 	        <TabWidget

@@ -26,8 +26,51 @@ public class MidweekActivity extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
-		
-		
+		setContentView(R.layout.midweek);
+
+		TextView tV = (TextView) this.findViewById(R.id.leagueName);
+		tV.setText("Fantasy Football League");
+
+		tV = (TextView) this.findViewById(R.id.myTeamName);
+		tV.setText("Joe's Team");
+
+		tV = (TextView) this.findViewById(R.id.myTeamRecord);
+		tV.setText("8-0-1");
+
+		tV = (TextView) this.findViewById(R.id.myTeamRank);
+		tV.setText("1 of 12");
+
+		tV = (TextView) this.findViewById(R.id.vsTeamName);
+		tV.setText("The Best");
+
+		tV = (TextView) this.findViewById(R.id.alert);
+		tV.setText("Frank Gore Probable");
+
+		tabs = (TabHost)this.findViewById(R.id.stat_tabhost);
+		tabs.setup();
+
+		DatabaseHelper dbHelp = GamedayActivity.getDbHelp();
+
+		TopPerformerList tpl = new TopPerformerList(this);
+		String query = "SELECT NFL_PLAYERS.fName, NFL_PLAYERS.lName, NFL_PLAYERS._id FROM NFL_PLAYERS";
+	 	setupTab(tpl.createPerformerList(query, dbHelp,false), "ALL");
+	 	query = "SELECT NFL_PLAYERS.fName, NFL_PLAYERS.lName, NFL_PLAYERS._id FROM NFL_PLAYERS where position_id = 0";
+		setupTab(tpl.createPerformerList(query, dbHelp,false), "QB");
+		query = "SELECT NFL_PLAYERS.fName, NFL_PLAYERS.lName, NFL_PLAYERS._id FROM NFL_PLAYERS where position_id = 2";
+		setupTab(tpl.createPerformerList(query, dbHelp,false), "RB");
+		query = "SELECT NFL_PLAYERS.fName, NFL_PLAYERS.lName, NFL_PLAYERS._id FROM NFL_PLAYERS where position_id = 1";
+		setupTab(tpl.createPerformerList(query, dbHelp,false), "WR");
+		query = "SELECT NFL_PLAYERS.fName, NFL_PLAYERS.lName, NFL_PLAYERS._id FROM NFL_PLAYERS where position_id = 3";
+		setupTab(tpl.createPerformerList(query, dbHelp,false), "TE");
+		query = "SELECT NFL_PLAYERS.fName, NFL_PLAYERS.lName, NFL_PLAYERS._id FROM NFL_PLAYERS where position_id = 4";
+		setupTab(tpl.createPerformerList(query, dbHelp,false), "K");
+
+		final ScrollView sv = (ScrollView) this.findViewById(R.id.scrollViewMidweek);
+		sv.post(new Runnable() {            
+		    public void run() {
+		           sv.fullScroll(View.FOCUS_UP);              
+		    }
+		});
 	}
 	
 
